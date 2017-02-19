@@ -1,3 +1,7 @@
+@import "neat";
+
+$small: 700px;
+
 body {
   position:fixed;
   left:0px;
@@ -20,6 +24,7 @@ body {
     &.disabled {
       left:250px;
       right:-250px;
+      background-color:#ccc;
     }
 
     .scrollable{
@@ -57,8 +62,11 @@ body {
     padding-left: 50px;
   }
   .section {
+    @include grid-container;
     min-height: 200px;
     margin: 5px 20px;
+    padding: 10px 0;
+    box-shadow: 0 1px 1px 0px rgba(0,0,0,0.2);
     &.logo{
       background-color:#fff;
       padding-top: 50px;
@@ -73,5 +81,14 @@ body {
         padding: 0;
       }
     }
+    .column {
+      @include grid-column(6);
+      @media screen and (max-width: $small) {
+        @include grid-column(12);
+      }
+    }
+  }
+  p {
+    text-indent:20px;
   }
 }
