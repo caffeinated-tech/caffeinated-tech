@@ -30,6 +30,10 @@ gem 'jbuilder', '~> 2.5'
 # sass grid framework
 gem 'neat'
 
+# syntax highlighting
+gem 'coderay'
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

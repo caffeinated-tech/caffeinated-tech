@@ -13,5 +13,6 @@
  *= require_tree .
  *= require main
  *= require menu
+ *= require highlight
  *= require_self
  */

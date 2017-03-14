@@ -1,0 +1,50 @@
+<%= render partial: 'blog/header'%>
+<div class="section">
+  <h1>
+    Welcome to the glossary
+  </h1>
+  <p>
+  </p>
+</div>
+
+<div class="section">
+  <div class="column">
+    <h1>
+      Idempotent
+    </h1>
+    <p>
+      An idempotent operation is an action which can be carried out one or more times without changing the outcome after the first operation. Simple examples of idempotency include retrieving data, such as a HTTP GET request, or a database read. They only retrieve data, and don't modify it. Therefore it can be safely run multiple times without any side-effects. A delete operation is also usually idempotent, as you can't delete something multiple times (unless it was restored in the meantime) 
+    </p>
+    
+    <%= raw highlight_code :ruby, 'Blog.find_by title: \'Idempotent\''%>
+
+    <p>
+      Incremental updates on the other hand, are not idempotent, as each one will increment the value once. Running it once will increment the value by 1, but running it twice will increment by 2. As they aren't the same, the function isn't idempotent
+    </p>
+  </div>
+  <div class="column">
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="column">
+    <h1>
+      Hoisting (JavaScript)
+    </h1>
+    <p>
+    </p>
+  </div>
+  <div class="column">
+    <h2>
+      Sources
+    </h2>
+    <ul>
+      <li>
+        <a href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting">
+          Mozilla Glossary: Hoisting
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
