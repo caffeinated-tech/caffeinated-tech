@@ -1,0 +1,27 @@
+{
+  "name": "caffeinated-tech",
+  "version": "0.1.0",
+  "description": "a blog, tech glossary and cv website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caffeinated-tech/caffeinated-tech.git"
+  },
+  "author": "liam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caffeinated-tech/caffeinated-tech/issues"
+  },
+  "homepage": "https://github.com/caffeinated-tech/caffeinated-tech#readme",
+  "devDependencies": {
+    "coffee-script": "^1.12.4",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongodb": "^2.2.24"
+  }
+}
