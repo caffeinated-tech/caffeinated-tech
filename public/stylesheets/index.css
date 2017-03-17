@@ -1,0 +1,65 @@
+body {
+  color: #ccc;
+  background: repeating-linear-gradient(
+    45deg, 
+    #111 25%, 
+    #222 25%, 
+    #222 50%, 
+    #111 50%, 
+    #111 75%, 
+    #222 75%);
+  background-size: 20px 20px;
+}
+
+img.logo {
+  display: block;
+  margin: auto;
+  width:100px;
+}
+
+.centered {
+  text-align: center;
+}
+
+.inverted{
+  padding: 5px;
+  text-align: center;
+}
+.inverted a{
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+
+}
+.inverted.blog {
+  background-color: #004180;
+}
+.inverted.glossary {
+  background-color: #cc8400;
+}
+.inverted.contact {
+  background-color: #006f00;
+}
+.inverted.cv {
+  background-color: #6d006d;
+}
+
+.section {
+  margin: 30px;
+  padding:25px 15px 5px 15px;
+  background-color: #ccc;
+  color: #222;
+  position:relative;
+}
+.section p {
+  text-indent: 20px;
+}
+.section h3 {
+  font-size:26px;
+  background-color: #009fa9;
+  color: white;
+  position:absolute;
+  top:-15px;
+  left:-30px;
+  padding:3px 10px;
+}
