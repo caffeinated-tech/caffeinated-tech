@@ -15,6 +15,6 @@ Server.use(express.static('public'))
 
 Server.set 'title', 'caffeinated.tech'
 Server.get '/', (req,res) -> 
-  res.redirect '/home'
+  res.redirect '/v/home'
 
 Server.listen(8000)

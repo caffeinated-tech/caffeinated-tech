@@ -3,7 +3,7 @@ BlogModule =
   router: require('express')()
 
 BlogModule.router.get '/', (req,res) ->
-  res.send 'This is the blog home page'
+  res.sendFile './blog.html', SEND_FILE_OPTIONS
 
 BlogModule.router.on 'mount', (parent) =>
   @parent = parent

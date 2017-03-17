@@ -1,5 +1,11 @@
-body {
+html {
   color: #ccc;
+  position:fixed;
+  top:0;
+  bottom: 0;
+  left:0;
+  right:0;
+  overflow:   hidden;
   background: repeating-linear-gradient(
     45deg, 
     #111 25%, 
@@ -9,6 +15,16 @@ body {
     #111 75%, 
     #222 75%);
   background-size: 20px 20px;
+}
+body {
+  overflow-y: scroll;
+  height:100%;
+}
+
+a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 img.logo {
@@ -20,16 +36,13 @@ img.logo {
 .centered {
   text-align: center;
 }
-
 .inverted{
-  padding: 5px;
   text-align: center;
 }
 .inverted a{
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-
+  display: inline-block;
+  width:100%;
+  padding: 1px 3px;
 }
 .inverted.blog {
   background-color: #004180;
@@ -45,7 +58,7 @@ img.logo {
 }
 
 .section {
-  margin: 30px;
+  margin: 30px 0 30px 30px;
   padding:25px 15px 5px 15px;
   background-color: #ccc;
   color: #222;
@@ -61,5 +74,17 @@ img.logo {
   position:absolute;
   top:-15px;
   left:-30px;
-  padding:3px 10px;
+  padding:3px 15px;
+}
+.section h3.blog {
+  background-color: #004180;
+}
+.section h3.glossary {
+  background-color: #cc8400;
+}
+.section h3.contact {
+  background-color: #006f00;
+}
+.section h3.cv {
+  background-color: #6d006d;
 }

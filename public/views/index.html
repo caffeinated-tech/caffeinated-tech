@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <base href="http://localhost:8000">
     <meta charset="utf-8">
     <meta name="description" content="Tech Blog">
     <meta name="author" content="liam@caffeinated.tech">
@@ -16,35 +17,29 @@
 
     <div id="page">
       <div class="container">
-        <img class="logo" src="images/ct-inverted-logo.png">
-        <h1 class="centered">  
-          caffeinated.tech
-        </h1>
+        <a href="/v/home">
+          <img class="logo" src="images/ct-inverted-logo.png">
+          <h1 class="centered">  
+            caffeinated.tech
+          </h1>
+        </a>
         <div class="row">
           <div class="three columns inverted blog">
-            <a href="/">Blog</a>
+            <a href="/v/blog">Blog</a>
           </div>
           <div class="three columns inverted glossary">
-            <a href="/">Glossary</a>
+            <a href="/v/glossary">Glossary</a>
           </div>
           <div class="three columns inverted contact">
-            <a href="/">Contact</a>
+            <a href="/v/contact">Contact</a>
           </div>
           <div class="three columns inverted cv">
-            <a href="/">CV</a>
+            <a href="/v/CV">CV</a>
           </div>
         </div>
-
-        <div class="section">
-          <h3>
-            Welcome
-          </h3>
-          <p>
-            Lorum Ipsum Fuck'em
-          </p>
+        <div id="contents">        
         </div>
       </div>
-
     </div>
   </body>
   <script type="text/javascript" src="scripts/index.js"></script>
