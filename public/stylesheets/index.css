@@ -26,7 +26,9 @@ a {
   font-weight: bold;
   text-decoration: none;
 }
-
+label {
+  color: #ccc;
+}
 img.logo {
   display: block;
   margin: auto;
@@ -66,16 +68,17 @@ img.logo {
 }
 .section p {
   text-indent: 20px;
+  line-height: 16px;
 }
 .section h3 {
-  font-size:26px;
+  font-size:20px;
   background-color: #009fa9;
   color: white;
   position:absolute;
-  top:-15px;
+  top:-9px;
   left:-30px;
   padding:3px 15px;
-}
+ }
 .section h3.blog {
   background-color: #004180;
 }

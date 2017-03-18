@@ -1,5 +1,7 @@
 #!/usr/bin/env coffee
 express = require('express')
+bodyParser = require('body-parser')
+
 Server = express()
 
 global.SEND_FILE_OPTIONS = 
@@ -8,10 +10,11 @@ global.SEND_FILE_OPTIONS =
   headers: 
     'x-sent': true
 
+Server.use(express.static('public'))
+Server.use(bodyParser.json())
 require('./modules')(Server)
 
 
-Server.use(express.static('public'))
 
 Server.set 'title', 'caffeinated.tech'
 Server.get '/', (req,res) -> 
