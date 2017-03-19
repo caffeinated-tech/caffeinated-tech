@@ -1,10 +1,10 @@
 <script type="text/template" id="template">
   <div class="section">
     <h3 class="blog">
-      --Title--
+      Insert Title
     </h3>
     <p>
-      --Post Body--
+      Insert Body
     </p>
   </div>
 </script>
@@ -12,10 +12,10 @@
 <div id="new-content" contenteditable="true">
   <div class="section">
     <h3 class="blog">
-      --Title--
+      Insert Title
     </h3>
     <p>
-      --Post Body--
+      Insert Body
     </p>
   </div>
 </div>  
@@ -23,6 +23,15 @@
 
 
 <form>
+
+  <div class="row">
+    <div class="three columns">
+      <a class="button button-primary" id="add-section">Add Section</a>
+    </div>
+    <div class="three columns">
+      <a class="button button-primary" id="add-image">Add Image</a>
+    </div>
+  </div>
   <div class="row">
     <div class="six columns">
       <label>Title
@@ -30,8 +39,8 @@
       </label>
     </div>
     <div class="six columns">
-      <label>Slug
-        <input class="u-full-width" type="text" id="slug">
+      <label>Author
+        <input class="u-full-width" type="text" id="author">
       </label>
     </div>
   </div>
@@ -43,15 +52,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="three columns">
-      <a class="button button-primary" id="add-section">Add Section</a>
+    <div class="twelve columns">
+      <label>Blurb
+        <textarea class="u-full-width" id="blurb">
+          
+        </textarea>
+      </label>
     </div>
-    <div class="six columns">
-    .
-    </div>
-    <div class="three columns">
-
-      <a class="button button-primary" id="submit-post">Save Post</a>
-    </div>  
+  </div>
+  <div class="row">
+    <a class="button button-primary" id="submit-post">Save Post</a>
   </div>
 </form>

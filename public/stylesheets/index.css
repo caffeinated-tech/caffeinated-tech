@@ -26,6 +26,13 @@ a {
   font-weight: bold;
   text-decoration: none;
 }
+a.button,
+a.button:visited{
+  color: #ccc;
+}
+a.button:hover{
+  color: white;
+}
 label {
   color: #ccc;
 }
@@ -34,7 +41,22 @@ img.logo {
   margin: auto;
   width:100px;
 }
+#contents {
+  position:relative;
+  margin-top:20px;
+}
 
+#contents .title {
+  display: block;
+  margin-left: -12.5%;
+  margin-right: -12.5%;
+  background-color: #004180;
+  padding: 10px 12.5%;
+}
+
+#contents .title i {
+  color: white;
+}
 .centered {
   text-align: center;
 }

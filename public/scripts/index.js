@@ -82,11 +82,11 @@ console.log("other and another and this");
 window.$ = __webpack_require__(111);
 
 $(function() {
-  var loadPageCallback;
+  var loadMoreCallback, loadPage, loadPageCallback;
   console.log("huzzah");
   window.SERVER_URL = $('base')[0].href;
   window.Contents = $('#contents');
-  $(document).on('click', 'a', function(event) {
+  $(document).on('clickpushState', 'a', function(event) {
     var targetUrl, toMyServer;
     targetUrl = this.href;
     if (!this.href) {
@@ -96,47 +96,60 @@ $(function() {
     if (toMyServer) {
       console.log('overriding get to my server');
       event.preventDefault();
-      history.pushState({}, '', targetUrl);
-      return $.ajax({
-        method: 'GET',
-        url: targetUrl,
-        success: loadPageCallback
-      });
+      return loadPage(targetUrl);
     }
   });
   $(document).on('click', 'a#add-section', function(event) {
     return $('#new-content').append($('#template').html());
   });
+  $(document).on('click', 'a#load-more-posts', function(event) {
+    var currentNumberOfPosts;
+    currentNumberOfPosts = Contents.find('.section').length;
+    return $.ajax({
+      method: 'GET',
+      url: "v/blog/more?count=" + currentNumberOfPosts,
+      success: loadMoreCallback
+    });
+  });
   $(document).on('click', 'a#submit-post', function(event) {
     var data;
     data = {
       title: $('#title')[0].value,
-      slug: $('#slug')[0].value,
+      author: $('#author')[0].value,
+      blurb: $('#blurb')[0].value,
       tags: $('#tags')[0].value,
       body: $('#new-content').html()
     };
-    console.log('about to save', data, JSON.stringify(data));
+    console.log('about to save');
     return $.ajax({
       method: 'POST',
       url: '/v/blog/post/new',
       dataType: "json",
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(data),
-      success: function(data) {
-        return console.log('created a new post', data);
+      success: function(response) {
+        console.log('created a new post', response);
+        return loadPage(response.url);
       }
     });
   });
+  loadPage = function(url) {
+    history.pushState({}, '', url);
+    return $.ajax({
+      method: 'GET',
+      url: url,
+      success: loadPageCallback
+    });
+  };
   loadPageCallback = function(data) {
     console.log("loadPageCallback");
     return Contents.html(data);
   };
+  loadMoreCallback = function(data) {
+    return Contents.find('.bottom').before(data);
+  };
   __webpack_require__(0);
-  return $.ajax({
-    method: 'GET',
-    url: window.location.href,
-    success: loadPageCallback
-  });
+  return loadPage(window.location.href);
 });
 
 
