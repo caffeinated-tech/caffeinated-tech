@@ -6,7 +6,7 @@ compileBlurb = (data) ->
   
   """
     <div class="section">
-      <a href="v/blog/post/#{data.id}/#{data.slug}">
+      <a href="v/blog/#{data.id}/#{data.slug}">
         <h3 class="blog">
           #{data.title}
         </h3>
@@ -31,7 +31,7 @@ BlogModule.router.get '/', (req,res) ->
     .exec (err, posts) ->
       posts = (compileBlurb(post) for post in posts).join("\n")
       res.send """
-        <h2 class="title">
+        <h2 class="title blog">
           <a href="v/blog">
             Recent Blog Posts
           </a>
@@ -55,10 +55,10 @@ BlogModule.router.get '/more', (req,res) ->
       posts = (compileBlurb(post) for post in posts).join("\n")
       res.send posts
 
-BlogModule.router.get '/post/new', (req, res) ->
+BlogModule.router.get '/new', (req, res) ->
   res.sendFile './new_post.html', SEND_FILE_OPTIONS
 
-BlogModule.router.post '/post/new', (req, res) ->
+BlogModule.router.post '/new', (req, res) ->
   console.log 'post/new'
   # console.log req
   console.log req
@@ -71,7 +71,7 @@ BlogModule.router.post '/post/new', (req, res) ->
       res.json
         url: "/v/blog/post/#{post.id}/#{post.slug}"
 
-BlogModule.router.get '/post/:id/:slug', (req, res) ->
+BlogModule.router.get '/:id/:slug', (req, res) ->
   console.log 'looking for a post', req.params.id
   BlogModule.Post.findOne(_id: req.params.id).exec (err, post) ->
     if err
@@ -81,7 +81,7 @@ BlogModule.router.get '/post/:id/:slug', (req, res) ->
       html = """
         <div class="title">
           <h2>
-            <a href="v/blog/post/#{post.id}/#{post.slug}">
+            <a href="v/blog/#{post.id}/#{post.slug}">
               #{post.title}
             </a>
           </h2>

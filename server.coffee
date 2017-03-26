@@ -1,6 +1,9 @@
 #!/usr/bin/env coffee
 express = require('express')
 bodyParser = require('body-parser')
+global.mongoose = require('mongoose')
+
+mongoose.connect 'mongodb://localhost/caffeinated-tech'
 
 Server = express()
 

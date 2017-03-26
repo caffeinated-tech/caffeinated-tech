@@ -7,7 +7,7 @@ $ ->
   window.SERVER_URL = $('base')[0].href
   window.Contents = $('#contents')
 
-  $(document).on 'clickpushState', 'a', (event) ->
+  $(document).on 'click', 'a', (event) ->
     targetUrl = this.href
     return unless this.href
     toMyServer = new RegExp(SERVER_URL).test(targetUrl)
@@ -25,6 +25,13 @@ $ ->
       method: 'GET'
       url: "v/blog/more?count=#{currentNumberOfPosts}"
       success: loadMoreCallback
+
+  $(document).on 'click', 'a#load-more-defintions', (event) ->
+    currentNumberOfDefinitions = Contents.find('.section').length
+    $.ajax
+      method: 'GET'
+      url: "v/glossary?count=#{currentNumberOfDefinitions}"
+      success: loadMoreCallback
   
   $(document).on 'click', 'a#submit-post', (event) ->
     data =  
@@ -33,16 +40,33 @@ $ ->
       blurb: $('#blurb')[0].value
       tags: $('#tags')[0].value
       body: $('#new-content').html()
-    console.log 'about to save'
     
     $.ajax
       method: 'POST'
-      url: '/v/blog/post/new'
+      url: '/v/blog/new'
       dataType: "json"
       contentType: "application/json; charset=utf-8"
       data: JSON.stringify(data)
       success: (response) ->
         console.log 'created a new post', response
+        loadPage response.url
+
+  $(document).on 'click', 'a#submit-definition', (event) ->
+    data =  
+      title: $('#title')[0].value
+      author: $('#author')[0].value
+      blurb: $('#blurb')[0].value
+      tags: $('#tags')[0].value
+      body: $('#new-content').html()
+    
+    $.ajax
+      method: 'POST'
+      url: '/v/glossary/new'
+      dataType: "json"
+      contentType: "application/json; charset=utf-8"
+      data: JSON.stringify(data)
+      success: (response) ->
+        console.log 'created a new definition', response
         loadPage response.url
   
   loadPage = (url) ->
@@ -55,6 +79,7 @@ $ ->
   loadPageCallback = (data) ->
     console.log "loadPageCallback"
     Contents.html data
+
   loadMoreCallback = (data) ->
     Contents.find('.bottom').before data
 

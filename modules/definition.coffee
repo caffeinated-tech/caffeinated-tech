@@ -1,4 +1,4 @@
-PostSchema = new mongoose.Schema
+DefinitionSchema = new mongoose.Schema
   title: 
     type: String
     required: true
@@ -19,6 +19,6 @@ PostSchema = new mongoose.Schema
 ,
   timestamps: true
 
-Post = mongoose.model 'Post', PostSchema
+Definition = mongoose.model 'Definition', DefinitionSchema
 
-module.exports = Post
+module.exports = Definition

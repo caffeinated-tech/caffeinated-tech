@@ -8,12 +8,12 @@ html {
   overflow:   hidden;
   background: repeating-linear-gradient(
     45deg, 
-    #111 25%, 
-    #222 25%, 
-    #222 50%, 
-    #111 50%, 
-    #111 75%, 
-    #222 75%);
+    rgba(0,0,0,0.95) 25%, 
+    rgba(0,0,0,0.9) 25%, 
+    rgba(0,0,0,0.9) 50%, 
+    rgba(0,0,0,0.95) 50%, 
+    rgba(0,0,0,0.95) 75%, 
+    rgba(0,0,0,0.9) 75%);
   background-size: 20px 20px;
 }
 body {
@@ -48,11 +48,56 @@ img.logo {
 
 #contents .title {
   display: block;
-  margin-left: -12.5%;
+  /*margin-left: -12.5%;
   margin-right: -12.5%;
-  background-color: #004180;
-  padding: 10px 12.5%;
+  padding: 10px 12.5%;*/
+  padding: 10px 30px;
 }
+#contents .title.blog{
+  color: #004180;
+}
+#contents .title.glossary{
+  color: #cc8400;
+}
+#contents .title.contact{
+  color: #006f00;
+}
+#contents .title.cv{
+  color: #6d006d;
+}
+
+.social-links a{
+  display: block
+}
+.social-links a.linkedin{
+    background-color: #006fa6;
+    text-align: center;
+}
+.social-links a.facebook{
+    background-color: #3b5998;
+    text-align: center;
+}
+.social-links a.googleplus{
+    background-color: #db4437;
+    text-align: center;
+}
+.social-links a.twitter{
+    background-color: #1DA1F2;
+    text-align: center;
+}
+.social-links a.twitter{
+    background-color: #1DA1F2;
+    text-align: center;
+}
+.social-links a.codepen{
+    background-color: #1DA1F2;
+    text-align: center;
+}
+.social-links a.stackoverflow{
+    background-color: #F48024;
+    text-align: center;
+}
+
 
 #contents .title i {
   color: white;
