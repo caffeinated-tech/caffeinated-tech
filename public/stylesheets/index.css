@@ -63,11 +63,9 @@ img.logo {
 #contents .title.cv{
   color: #6d006d;
 }
-.hex a span {
-  font-size:30px;
-  margin: 34px -74px;
-  transform: rotate(-30deg);
-  padding-top:50%;
+.hex img {
+  max-height:100%;
+  max-width:100%;
 }
 .hex.linkedin a{
     width:100%;
