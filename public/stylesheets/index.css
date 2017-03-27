@@ -145,6 +145,13 @@ img.logo {
   color: #222;
   position:relative;
 }
+.section .tag-cloud li {
+  display:inline;   
+  background-color: #333;
+  color: #ccc;
+  padding: 2px 5px;
+  margin: 2px 5px;
+}
 .section li{
   margin-bottom:0;
 }
