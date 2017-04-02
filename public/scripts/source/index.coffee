@@ -3,7 +3,6 @@ window.$ = require('jquery')
 $ ->
   console.log "huzzah"
 
-
   window.SERVER_URL = $('base')[0].href
   window.Contents = $('#contents')
 
@@ -17,7 +16,10 @@ $ ->
       loadPage targetUrl
 
   $(document).on 'click', 'a#add-section', (event) ->
-    $('#new-content').append $('#template').html()
+    $('#new-content').append $('#section-template').html()
+
+  $(document).on 'click', 'a#add-code', (event) ->
+    $('#new-content').append $('#code-template').html()
 
   $(document).on 'click', 'a#load-more-posts', (event) ->
     currentNumberOfPosts = Contents.find('.section').length
@@ -32,6 +34,21 @@ $ ->
       method: 'GET'
       url: "v/glossary?count=#{currentNumberOfDefinitions}"
       success: loadMoreCallback
+
+  $(document).on 'click', '#login', (event) ->
+    data = 
+      email: $('#email')[0].value
+      password: $('#password')[0].value
+    $.ajax
+      method: 'POST'
+      url: '/v/admin/login'
+      dataType: "json"
+      contentType: "application/json; charset=utf-8"
+      data: JSON.stringify(data)
+      success: (response) ->
+        console.log 'logged in', response
+        loadPage response.url
+
   
   $(document).on 'click', 'a#submit-post', (event) ->
     data =  
@@ -79,6 +96,10 @@ $ ->
   loadPageCallback = (data) ->
     console.log "loadPageCallback"
     Contents.html data
+    $('pre code').each (i, e) -> 
+      console.log 'highglighting block ', e
+      hljs.highlightBlock e
+
 
   loadMoreCallback = (data) ->
     Contents.find('.bottom').before data

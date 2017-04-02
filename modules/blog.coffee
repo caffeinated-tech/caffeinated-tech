@@ -1,5 +1,15 @@
 bodyParser = require('body-parser')
 express = require('express')
+User = require './user'
+
+authenticated = (req, res, next) ->
+  console.log 'is authenticated?'
+  return res.send(null) unless req.session.userId?
+  User.findOne
+    _id: req.session.userId
+  , (err, user) ->
+    return res.send(null) if err or user is null
+    next()
 
 compileBlurb = (data) ->
   console.log '\n\ndata', data
@@ -55,7 +65,7 @@ BlogModule.router.get '/more', (req,res) ->
       posts = (compileBlurb(post) for post in posts).join("\n")
       res.send posts
 
-BlogModule.router.get '/new', (req, res) ->
+BlogModule.router.get '/new', authenticated, (req, res) ->
   res.sendFile './new_post.html', SEND_FILE_OPTIONS
 
 BlogModule.router.post '/new', (req, res) ->

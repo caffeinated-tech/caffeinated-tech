@@ -10349,7 +10349,10 @@ $(function() {
     }
   });
   $(document).on('click', 'a#add-section', function(event) {
-    return $('#new-content').append($('#template').html());
+    return $('#new-content').append($('#section-template').html());
+  });
+  $(document).on('click', 'a#add-code', function(event) {
+    return $('#new-content').append($('#code-template').html());
   });
   $(document).on('click', 'a#load-more-posts', function(event) {
     var currentNumberOfPosts;
@@ -10367,6 +10370,24 @@ $(function() {
       method: 'GET',
       url: "v/glossary?count=" + currentNumberOfDefinitions,
       success: loadMoreCallback
+    });
+  });
+  $(document).on('click', '#login', function(event) {
+    var data;
+    data = {
+      email: $('#email')[0].value,
+      password: $('#password')[0].value
+    };
+    return $.ajax({
+      method: 'POST',
+      url: '/v/admin/login',
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(response) {
+        console.log('logged in', response);
+        return loadPage(response.url);
+      }
     });
   });
   $(document).on('click', 'a#submit-post', function(event) {
@@ -10421,7 +10442,11 @@ $(function() {
   };
   loadPageCallback = function(data) {
     console.log("loadPageCallback");
-    return Contents.html(data);
+    Contents.html(data);
+    return $('pre code').each(function(i, e) {
+      console.log('highglighting block ', e);
+      return hljs.highlightBlock(e);
+    });
   };
   loadMoreCallback = function(data) {
     return Contents.find('.bottom').before(data);

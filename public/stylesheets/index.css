@@ -50,7 +50,9 @@ img.logo {
   display: block;
   padding: 10px 30px;
   font-size:26px;
+  color: #ccc;
 }
+/*
 #contents .title.blog{
   color: #004180;
 }
@@ -63,6 +65,7 @@ img.logo {
 #contents .title.cv{
   color: #6d006d;
 }
+*/
 .hex img {
   max-height:100%;
   max-width:100%;
@@ -188,6 +191,9 @@ img.logo {
   display:inline-block;
   padding:3px 10px;
   margin-bottom: 1rem;
+}
+.section label {
+  color: #222;
 }
 
 .section .blog {

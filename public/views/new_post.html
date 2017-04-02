@@ -1,4 +1,4 @@
-<script type="text/template" id="template">
+<script type="text/template" id="section-template">
   <div class="section">
     <h3 class="blog">
       Insert Title
@@ -7,6 +7,14 @@
       Insert Body
     </p>
   </div>
+</script>
+
+<script type="text/template" id="code-template">
+  <pre>
+    <code>
+      Insert Code (formatting will be applied after save)
+    </code>
+  </pre>
 </script>
 
 <div id="new-content" contenteditable="true">
@@ -27,6 +35,9 @@
   <div class="row">
     <div class="three columns">
       <a class="button button-primary" id="add-section">Add Section</a>
+    </div>
+    <div class="three columns">
+      <a class="button button-primary" id="add-code">Add Code</a>
     </div>
     <div class="three columns">
       <a class="button button-primary" id="add-image">Add Image</a>
