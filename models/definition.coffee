@@ -19,6 +19,20 @@ DefinitionSchema = new mongoose.Schema
 ,
   timestamps: true
 
+DefinitionSchema.methods.blurbHTML = ->
+  """
+    <section>
+      <a href="v/glossary/#{@id}/#{@slug}">
+        <h3>
+          #{@title}
+        </h3>
+      </a>
+      <p>
+        #{@blurb}
+      </p>
+    </section>
+  """
+
 Definition = mongoose.model 'Definition', DefinitionSchema
 
 module.exports = Definition

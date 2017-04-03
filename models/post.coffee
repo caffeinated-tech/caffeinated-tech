@@ -19,6 +19,20 @@ PostSchema = new mongoose.Schema
 ,
   timestamps: true
 
+PostSchema.methods.blurbHTML = ->
+  """
+    <section>
+      <a href="v/blog/#{@id}/#{@slug}">
+        <h3>
+          #{@title}
+        </h3>
+      </a>
+      <p>
+        #{@blurb}
+      </p>
+    </section>
+  """
+
 Post = mongoose.model 'Post', PostSchema
 
 module.exports = Post

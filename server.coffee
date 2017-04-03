@@ -26,6 +26,9 @@ Server.use session(
   secret: '1iOutbP721MdKINtHai5bzzAH8lrQMYe'
   name: 'session')
 
+global.Models = require('./models/index')
+global.Middleware = require('./middleware/index')
+
 require('./modules')(Server)
 
 Server.set 'title', 'caffeinated.tech'
