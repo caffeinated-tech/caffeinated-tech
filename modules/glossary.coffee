@@ -40,12 +40,9 @@ GlossaryModule.router.get '/', (req,res) ->
     .limit(3)
     .exec (err, definitions) ->
       definitions = (compileBlurb(definition) for definition in definitions).join("\n")
+      top = fs.readFileSync('./public/views/glossary.html')
       res.send """
-        <h2 class="title glossary">
-          <a href="v/glossary">
-            Tech Glossary
-          </a>
-        </h2>
+        #{top}
         #{definitions}
         <div class="row bottom">
           <div class="twelve columns">
@@ -85,17 +82,7 @@ GlossaryModule.router.get '/:id/:slug', (req, res) ->
         res.send err
       else
         console.log 'definition.body', definition 
-        html = """
-          <div class="title">
-            <h2>
-              <a href="v/glossary/#{definition.id}/#{definition.slug}">
-                #{definition.title}
-              </a>
-            </h2>
-            <i>Created: #{definition.createdAt} by #{definition.author}</i>
-          </div>
-        """ + definition.body
-        res.send html
+        res.send definition.body
 
 GlossaryModule.router.on 'mount', (parent) =>
   @parent = parent

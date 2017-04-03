@@ -40,12 +40,9 @@ BlogModule.router.get '/', (req,res) ->
     .limit(3)
     .exec (err, posts) ->
       posts = (compileBlurb(post) for post in posts).join("\n")
+      top = fs.readFileSync('./public/views/blog.html')
       res.send """
-        <h2 class="title blog">
-          <a href="v/blog">
-            Recent Blog Posts
-          </a>
-        </h2>
+        #{top}
         #{posts}
         <div class="row bottom">
           <div class="twelve columns">
@@ -88,17 +85,7 @@ BlogModule.router.get '/:id/:slug', (req, res) ->
       res.send err
     else
       console.log 'post.body', post 
-      html = """
-        <div class="title">
-          <h2>
-            <a href="v/blog/#{post.id}/#{post.slug}">
-              #{post.title}
-            </a>
-          </h2>
-          <i>Posted: #{post.createdAt} by #{post.author}</i>
-        </div>
-      """ + post.body
-      res.send html
+      res.send post.body
 
 BlogModule.router.on 'mount', (parent) =>
   @parent = parent

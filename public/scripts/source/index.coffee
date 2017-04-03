@@ -88,6 +88,8 @@ $ ->
   
   loadPage = (url) ->
     history.pushState({},'', url)
+    Contents.html 'loading...'
+    changePageStyle url
     $.ajax
       method: 'GET'
       url: url
@@ -104,6 +106,16 @@ $ ->
   loadMoreCallback = (data) ->
     Contents.find('.bottom').before data
 
+  changePageStyle = (url) ->
+    console.log 'changePageStyle', url
+    klass = switch 
+      when /blog/.test url then 'blog'
+      when /glossary/.test url then 'glossary'
+      when /contact/.test url then 'contact'
+      when /CV/.test url then 'profile'
+      else 'home'
+    console.log 'klass', klass
+    Contents[0].className = klass
   require './other.coffee'
 
   loadPage  window.location.href

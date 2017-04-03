@@ -5,6 +5,8 @@ bodyParser = require('body-parser')
 cookieParser = require('cookie-parser')
 global.mongoose = require('mongoose')
 uuidV1 = require('uuid/v1')
+global.fs = require("fs")
+
  
 mongoose.connect 'mongodb://localhost/caffeinated-tech'
 

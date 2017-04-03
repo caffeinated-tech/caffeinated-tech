@@ -47,25 +47,13 @@ img.logo {
 }
 
 #contents .title {
+  text-align: center;
+  margin-bottom:0px;
   display: block;
   padding: 10px 30px;
-  font-size:26px;
-  color: #ccc;
+  color: #fff;
 }
-/*
-#contents .title.blog{
-  color: #004180;
-}
-#contents .title.glossary{
-  color: #cc8400;
-}
-#contents .title.contact{ 
-  color: #006f00;
-}
-#contents .title.cv{
-  color: #6d006d;
-}
-*/
+
 .hex img {
   max-height:100%;
   max-width:100%;
@@ -141,12 +129,15 @@ img.logo {
   background-color: #6d006d;
 }
 
-.section {
-  margin: 30px 0 30px 16px;
-  padding:30px 12px 5px 12px;
+.section,
+section {
+  margin: 0px 0 30px;
+  padding:20px 12px 5px 10px;
   background-color: #ccc;
   color: #222;
   position:relative;
+  border-top: 4px solid;
+  border-color:#ccc;
 }
 .section .tag-cloud li {
   display:inline;   
@@ -170,17 +161,20 @@ img.logo {
   line-height: 16px;
   margin-bottom: 1rem;
 }
+section h3,
 .section h3 {
   font-size:20px;
   background-color: #009fa9;
   color: white;
   position:absolute;
-  top:-9px;
+  top:-18px;
   left:-20px;
-  padding:3px 10px;
+  font-weight:bold;
+  padding:4px 10px 4px 5px;
   margin-bottom: 1rem;
 }
 
+section h4 ,
 .section h4 {
   font-size:16px;
   background-color: #009fa9;
@@ -195,20 +189,63 @@ img.logo {
 .section label {
   color: #222;
 }
-
-.section .blog {
+.blog section,
+.blog .section {
+  border-color: #004180;
+} 
+.glossary section,
+.glossary .section {
+  border-color: #cc8400;
+} 
+.contact section,
+.contact .section{
+  border-color: #006f00;
+}
+} 
+.profile section,
+.profile .section {
+  border-color: #6d006d;
+} 
+.blog section h3,
+.blog .section h3  {
   background-color: #004180;
 }
-.section .glossary {
+.glossary section h3,
+.glossary .section h3 {
   background-color: #cc8400;
 }
-.section .contact {
+.contact section h3,
+.contact .section h3 {
   background-color: #006f00;
 }
-.section .cv {
+.profile section h3,
+.profile section h4,
+.profile .section h3,
+.profile .section h4 {
   background-color: #6d006d;
 }
 
+.home section h3,
+.home section h4,
+.home .section h3,
+.home .section h4 {
+  background-color:  #7b0000;
+}
+.blog .title{
+  background-color: #004180;
+}
+.glossary .title{
+  background-color: #cc8400;
+}
+.contact .title{ 
+  background-color: #006f00;
+}
+.profile .title{
+  background-color: #6d006d;
+}
+.home .title{
+  background-color:  #7b0000;
+}
 
 #footer {
   bottom:0;
@@ -225,4 +262,24 @@ img.logo {
   .container {
       width: 90%;
   }
+}
+
+.checkered {
+  background-image: 
+    linear-gradient(
+      45deg, 
+      rgba(0,0,0,0.1) 25%, 
+      transparent 25%, 
+      transparent 75%, 
+      rgba(0,0,0,0.1) 75%, 
+      rgba(0,0,0,0.1)), 
+    linear-gradient(
+      45deg, 
+      rgba(0,0,0,0.1) 25%, 
+      transparent 25%, 
+      transparent 75%, 
+      rgba(0,0,0,0.1) 75%, 
+      rgba(0,0,0,0.1));
+  background-size: 10px 10px;
+  background-position:0 0, 5px 5px
 }

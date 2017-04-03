@@ -10331,7 +10331,7 @@ return jQuery;
 window.$ = __webpack_require__(1);
 
 $(function() {
-  var loadMoreCallback, loadPage, loadPageCallback;
+  var changePageStyle, loadMoreCallback, loadPage, loadPageCallback;
   console.log("huzzah");
   window.SERVER_URL = $('base')[0].href;
   window.Contents = $('#contents');
@@ -10434,6 +10434,8 @@ $(function() {
   });
   loadPage = function(url) {
     history.pushState({}, '', url);
+    Contents.html('loading...');
+    changePageStyle(url);
     return $.ajax({
       method: 'GET',
       url: url,
@@ -10450,6 +10452,26 @@ $(function() {
   };
   loadMoreCallback = function(data) {
     return Contents.find('.bottom').before(data);
+  };
+  changePageStyle = function(url) {
+    var klass;
+    console.log('changePageStyle', url);
+    klass = (function() {
+      switch (false) {
+        case !/blog/.test(url):
+          return 'blog';
+        case !/glossary/.test(url):
+          return 'glossary';
+        case !/contact/.test(url):
+          return 'contact';
+        case !/CV/.test(url):
+          return 'profile';
+        default:
+          return 'home';
+      }
+    })();
+    console.log('klass', klass);
+    return Contents[0].className = klass;
   };
   __webpack_require__(0);
   return loadPage(window.location.href);
