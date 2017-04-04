@@ -37,6 +37,19 @@ BlogModule.router.get '/more', (req,res) ->
 BlogModule.router.get '/new', Middleware.auth, (req, res) ->
   res.sendFile './new_post.html', SEND_FILE_OPTIONS
 
+
+BlogModule.router.get '/edit/:id', Middleware.auth, (req, res) ->
+  res.sendFile './new_post.html', SEND_FILE_OPTIONS
+  Models.Post.findOne(_id: req.params.id).exec (err, post) ->
+    if err
+      res.send err
+    else
+      res.send """
+      <div contenteditable="true">
+        post.body
+      </div
+      """
+
 BlogModule.router.post '/new', Middleware.auth, (req, res) ->
   req.body.slug = req.body.title.replace(/\s+/g, '-').toLowerCase()
   new Models.Post(req.body).save (err, post) ->

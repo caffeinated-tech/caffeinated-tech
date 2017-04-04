@@ -85,6 +85,27 @@ $ ->
       success: (response) ->
         console.log 'created a new definition', response
         loadPage response.url
+
+  $(document).on 'click', 'a#edit-definition', (event) ->
+    console.log "cicked on edit definition"
+    console.log $('#_id')[0].value
+    _id = $('#_id')[0].value
+    data =  
+      title: $('#title')[0].value
+      author: $('#author')[0].value
+      blurb: $('#blurb')[0].value
+      tags: $('#tags')[0].value
+      body: $('#new-content').html()
+    
+    $.ajax
+      method: 'POST'
+      url: "/v/glossary/edit/#{_id}"
+      dataType: "json"
+      contentType: "application/json; charset=utf-8"
+      data: JSON.stringify(data)
+      success: (response) ->
+        console.log 'updated a definition', response
+        loadPage response.url
   
   loadPage = (url) ->
     history.pushState({},'', url)

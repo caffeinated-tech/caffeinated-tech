@@ -10432,6 +10432,30 @@ $(function() {
       }
     });
   });
+  $(document).on('click', 'a#edit-definition', function(event) {
+    var _id, data;
+    console.log("cicked on edit definition");
+    console.log($('#_id')[0].value);
+    _id = $('#_id')[0].value;
+    data = {
+      title: $('#title')[0].value,
+      author: $('#author')[0].value,
+      blurb: $('#blurb')[0].value,
+      tags: $('#tags')[0].value,
+      body: $('#new-content').html()
+    };
+    return $.ajax({
+      method: 'POST',
+      url: "/v/glossary/edit/" + _id,
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(response) {
+        console.log('updated a definition', response);
+        return loadPage(response.url);
+      }
+    });
+  });
   loadPage = function(url) {
     history.pushState({}, '', url);
     Contents.html('loading...');

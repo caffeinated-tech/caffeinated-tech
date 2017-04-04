@@ -7,6 +7,10 @@ DefinitionSchema = new mongoose.Schema
     type: String
     required: true
     trim: true
+  author: 
+    type: String
+    required: true
+    trim: true
   blurb: String
   body: 
     type: String

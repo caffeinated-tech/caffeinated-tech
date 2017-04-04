@@ -24,12 +24,14 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
+    "dot": "^1.1.1",
     "express": "^4.15.2",
     "express-session": "^1.15.2",
     "highlight.js": "^9.10.0",
     "mongodb": "^2.2.24",
     "mongoose": "^4.9.0",
     "mongoose-bcrypt": "^1.4.2",
+    "promise": "^7.1.1",
     "uuid": "^3.0.1"
   }
 }
