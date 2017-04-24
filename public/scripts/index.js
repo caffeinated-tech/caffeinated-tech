@@ -63,18 +63,199 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 23);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 23:
+/***/ (function(module, exports, __webpack_require__) {
+
+window.$ = __webpack_require__(6);
+
+$(function() {
+  var changePageStyle, loadMoreCallback, loadPage, loadPageCallback;
+  console.log("huzzah");
+  window.SERVER_URL = $('base')[0].href;
+  window.Contents = $('#contents');
+  $(document).on('click', 'a', function(event) {
+    var targetUrl, toMyServer;
+    targetUrl = this.href;
+    if (!this.href) {
+      return;
+    }
+    toMyServer = new RegExp(SERVER_URL).test(targetUrl);
+    if (toMyServer) {
+      console.log('overriding get to my server');
+      event.preventDefault();
+      return loadPage(targetUrl);
+    }
+  });
+  $(document).on('click', 'a#add-section', function(event) {
+    return $('#new-content').append($('#section-template').html());
+  });
+  $(document).on('click', 'a#add-code', function(event) {
+    return $('#new-content').append($('#code-template').html());
+  });
+  $(document).on('click', 'a#load-more-posts', function(event) {
+    var currentNumberOfPosts;
+    currentNumberOfPosts = Contents.find('.section').length;
+    return $.ajax({
+      method: 'GET',
+      url: "v/blog/more?count=" + currentNumberOfPosts,
+      success: loadMoreCallback
+    });
+  });
+  $(document).on('click', 'a#load-more-defintions', function(event) {
+    var currentNumberOfDefinitions;
+    currentNumberOfDefinitions = Contents.find('.section').length;
+    return $.ajax({
+      method: 'GET',
+      url: "v/glossary?count=" + currentNumberOfDefinitions,
+      success: loadMoreCallback
+    });
+  });
+  $(document).on('click', '#login', function(event) {
+    var data;
+    data = {
+      email: $('#email')[0].value,
+      password: $('#password')[0].value
+    };
+    return $.ajax({
+      method: 'POST',
+      url: '/v/admin/login',
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(response) {
+        console.log('logged in', response);
+        return loadPage(response.url);
+      }
+    });
+  });
+  $(document).on('click', 'a#submit-post', function(event) {
+    var data;
+    data = {
+      title: $('#title')[0].value,
+      author: $('#author')[0].value,
+      blurb: $('#blurb')[0].value,
+      tags: $('#tags')[0].value,
+      body: $('#new-content').html()
+    };
+    return $.ajax({
+      method: 'POST',
+      url: '/v/blog/new',
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(response) {
+        console.log('created a new post', response);
+        return loadPage(response.url);
+      }
+    });
+  });
+  $(document).on('click', 'a#submit-definition', function(event) {
+    var data;
+    data = {
+      title: $('#title')[0].value,
+      author: $('#author')[0].value,
+      blurb: $('#blurb')[0].value,
+      tags: $('#tags')[0].value,
+      body: $('#new-content').html()
+    };
+    return $.ajax({
+      method: 'POST',
+      url: '/v/glossary/new',
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(response) {
+        console.log('created a new definition', response);
+        return loadPage(response.url);
+      }
+    });
+  });
+  $(document).on('click', 'a#edit-definition', function(event) {
+    var _id, data;
+    console.log("cicked on edit definition");
+    console.log($('#_id')[0].value);
+    _id = $('#_id')[0].value;
+    data = {
+      title: $('#title')[0].value,
+      author: $('#author')[0].value,
+      blurb: $('#blurb')[0].value,
+      tags: $('#tags')[0].value,
+      body: $('#new-content').html()
+    };
+    return $.ajax({
+      method: 'POST',
+      url: "/v/glossary/edit/" + _id,
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(response) {
+        console.log('updated a definition', response);
+        return loadPage(response.url);
+      }
+    });
+  });
+  loadPage = function(url) {
+    history.pushState({}, '', url);
+    Contents.html('loading...');
+    changePageStyle(url);
+    return $.ajax({
+      method: 'GET',
+      url: url,
+      success: loadPageCallback
+    });
+  };
+  loadPageCallback = function(data) {
+    console.log("loadPageCallback");
+    Contents.html(data);
+    return $('pre code').each(function(i, e) {
+      console.log('highglighting block ', e);
+      return hljs.highlightBlock(e);
+    });
+  };
+  loadMoreCallback = function(data) {
+    return Contents.find('.bottom').before(data);
+  };
+  changePageStyle = function(url) {
+    var klass;
+    console.log('changePageStyle', url);
+    klass = (function() {
+      switch (false) {
+        case !/blog/.test(url):
+          return 'blog';
+        case !/glossary/.test(url):
+          return 'glossary';
+        case !/contact/.test(url):
+          return 'contact';
+        case !/CV/.test(url):
+          return 'profile';
+        default:
+          return 'home';
+      }
+    })();
+    console.log('klass', klass);
+    return Contents[0].className = klass;
+  };
+  __webpack_require__(5);
+  return loadPage(window.location.href);
+});
+
+
+/***/ }),
+
+/***/ 5:
 /***/ (function(module, exports) {
 
 console.log("other and another and this");
 
 
 /***/ }),
-/* 1 */
+
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10324,183 +10505,6 @@ return jQuery;
 } );
 
 
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-window.$ = __webpack_require__(1);
-
-$(function() {
-  var changePageStyle, loadMoreCallback, loadPage, loadPageCallback;
-  console.log("huzzah");
-  window.SERVER_URL = $('base')[0].href;
-  window.Contents = $('#contents');
-  $(document).on('click', 'a', function(event) {
-    var targetUrl, toMyServer;
-    targetUrl = this.href;
-    if (!this.href) {
-      return;
-    }
-    toMyServer = new RegExp(SERVER_URL).test(targetUrl);
-    if (toMyServer) {
-      console.log('overriding get to my server');
-      event.preventDefault();
-      return loadPage(targetUrl);
-    }
-  });
-  $(document).on('click', 'a#add-section', function(event) {
-    return $('#new-content').append($('#section-template').html());
-  });
-  $(document).on('click', 'a#add-code', function(event) {
-    return $('#new-content').append($('#code-template').html());
-  });
-  $(document).on('click', 'a#load-more-posts', function(event) {
-    var currentNumberOfPosts;
-    currentNumberOfPosts = Contents.find('.section').length;
-    return $.ajax({
-      method: 'GET',
-      url: "v/blog/more?count=" + currentNumberOfPosts,
-      success: loadMoreCallback
-    });
-  });
-  $(document).on('click', 'a#load-more-defintions', function(event) {
-    var currentNumberOfDefinitions;
-    currentNumberOfDefinitions = Contents.find('.section').length;
-    return $.ajax({
-      method: 'GET',
-      url: "v/glossary?count=" + currentNumberOfDefinitions,
-      success: loadMoreCallback
-    });
-  });
-  $(document).on('click', '#login', function(event) {
-    var data;
-    data = {
-      email: $('#email')[0].value,
-      password: $('#password')[0].value
-    };
-    return $.ajax({
-      method: 'POST',
-      url: '/v/admin/login',
-      dataType: "json",
-      contentType: "application/json; charset=utf-8",
-      data: JSON.stringify(data),
-      success: function(response) {
-        console.log('logged in', response);
-        return loadPage(response.url);
-      }
-    });
-  });
-  $(document).on('click', 'a#submit-post', function(event) {
-    var data;
-    data = {
-      title: $('#title')[0].value,
-      author: $('#author')[0].value,
-      blurb: $('#blurb')[0].value,
-      tags: $('#tags')[0].value,
-      body: $('#new-content').html()
-    };
-    return $.ajax({
-      method: 'POST',
-      url: '/v/blog/new',
-      dataType: "json",
-      contentType: "application/json; charset=utf-8",
-      data: JSON.stringify(data),
-      success: function(response) {
-        console.log('created a new post', response);
-        return loadPage(response.url);
-      }
-    });
-  });
-  $(document).on('click', 'a#submit-definition', function(event) {
-    var data;
-    data = {
-      title: $('#title')[0].value,
-      author: $('#author')[0].value,
-      blurb: $('#blurb')[0].value,
-      tags: $('#tags')[0].value,
-      body: $('#new-content').html()
-    };
-    return $.ajax({
-      method: 'POST',
-      url: '/v/glossary/new',
-      dataType: "json",
-      contentType: "application/json; charset=utf-8",
-      data: JSON.stringify(data),
-      success: function(response) {
-        console.log('created a new definition', response);
-        return loadPage(response.url);
-      }
-    });
-  });
-  $(document).on('click', 'a#edit-definition', function(event) {
-    var _id, data;
-    console.log("cicked on edit definition");
-    console.log($('#_id')[0].value);
-    _id = $('#_id')[0].value;
-    data = {
-      title: $('#title')[0].value,
-      author: $('#author')[0].value,
-      blurb: $('#blurb')[0].value,
-      tags: $('#tags')[0].value,
-      body: $('#new-content').html()
-    };
-    return $.ajax({
-      method: 'POST',
-      url: "/v/glossary/edit/" + _id,
-      dataType: "json",
-      contentType: "application/json; charset=utf-8",
-      data: JSON.stringify(data),
-      success: function(response) {
-        console.log('updated a definition', response);
-        return loadPage(response.url);
-      }
-    });
-  });
-  loadPage = function(url) {
-    history.pushState({}, '', url);
-    Contents.html('loading...');
-    changePageStyle(url);
-    return $.ajax({
-      method: 'GET',
-      url: url,
-      success: loadPageCallback
-    });
-  };
-  loadPageCallback = function(data) {
-    console.log("loadPageCallback");
-    Contents.html(data);
-    return $('pre code').each(function(i, e) {
-      console.log('highglighting block ', e);
-      return hljs.highlightBlock(e);
-    });
-  };
-  loadMoreCallback = function(data) {
-    return Contents.find('.bottom').before(data);
-  };
-  changePageStyle = function(url) {
-    var klass;
-    console.log('changePageStyle', url);
-    klass = (function() {
-      switch (false) {
-        case !/blog/.test(url):
-          return 'blog';
-        case !/glossary/.test(url):
-          return 'glossary';
-        case !/contact/.test(url):
-          return 'contact';
-        case !/CV/.test(url):
-          return 'profile';
-        default:
-          return 'home';
-      }
-    })();
-    console.log('klass', klass);
-    return Contents[0].className = klass;
-  };
-  __webpack_require__(0);
-  return loadPage(window.location.href);
-});
-
-
 /***/ })
-/******/ ]);
+
+/******/ });
