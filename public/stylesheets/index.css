@@ -46,13 +46,6 @@ img.logo {
   margin-top:20px;
 }
 
-#contents .title {
-  text-align: center;
-  margin-bottom:0px;
-  display: block;
-  padding: 10px 30px;
-  color: #fff;
-}
 #contents ul#hexGrid li{
   margin-bottom: 2em;
 }
