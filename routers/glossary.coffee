@@ -22,11 +22,6 @@ GlossaryRouter.get '/', (req,res) ->
         definition.blurbHTML()
       viewData = 
         definitions: definitions
-        admin: req.user?.admin
-
-      console.log req.session
-      console.log viewData
-      
       res.send render('index.html', viewData)
       
 

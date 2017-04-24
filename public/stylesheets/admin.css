@@ -12,11 +12,6 @@
   margin-bottom: 3em;
   font-size: 16px;
 }
-#contents form {
-  border-top: 4px solid;
-  padding:15px 0;
-}
-
 #contents blockquote {
   border-top: 4px solid;
   color: #eee;
@@ -82,7 +77,7 @@
   margin: 0;
 }
 #contents label {
-  color: #ccc;
+  color: #222;
 }
 #contents.blog p,
 #contents.blog > * {
@@ -100,17 +95,10 @@
 #contents.profile > * {
   border-color: #6d006d;
 } 
-
-#contents.home > *{
-  border-color:#7b0000;
-}
-
-#contents.blog h3,
-#contents.blog h4{
+#contents.blog h3{
   background-color: #004180;
 }
-#contents.glossary h3,
-#contents.glossary h4 {
+#contents.glossary h3 {
   background-color: #cc8400;
 }
 #contents.contact h3,

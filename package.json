@@ -28,10 +28,12 @@
     "express": "^4.15.2",
     "express-session": "^1.15.2",
     "highlight.js": "^9.10.0",
+    "markdown": "^0.5.0",
     "mongodb": "^2.2.24",
     "mongoose": "^4.9.0",
     "mongoose-bcrypt": "^1.4.2",
     "promise": "^7.1.1",
+    "simplemde": "^1.11.2",
     "uuid": "^3.0.1"
   }
 }

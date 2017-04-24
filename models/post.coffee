@@ -1,5 +1,5 @@
 PostSchema = new mongoose.Schema
-  email: 
+  title:
     type: String
     required: true
     trim: true

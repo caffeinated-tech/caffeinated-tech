@@ -1,0 +1,55 @@
+<h2>
+  Admin Panel
+</h2>
+<p>
+  Careful - here be dragons.  
+</p>
+
+<h4>
+  Create content
+</h4>
+<form>
+  <div class="row">
+    <div class="three columns">
+      <a class="button" href="v/blog/new">New Post</a>
+    </div>
+    <div class="three columns">
+      <a class="button" href="v/glossary/new">New Definition</a>
+    </div>
+  </div>
+</form>
+
+
+<h4>
+  Edit existing content
+</h4>
+<p>
+  Links to open Markdown editor for existing contents
+</p>
+
+<div class="row">
+  <div class="six columns">
+  <h3> Glossary Definitions</h3>
+    <ul>
+      {{~it.definitions :value:index}}
+        <li>
+          <a href="{{=value.link}}">
+            {{=value.name}}
+          </a>
+        </li>
+      {{~}}
+    </ul>
+  </div>
+  <div class="six columns">
+    <h3> Blog Posts</h3>
+    <ul>
+      {{~it.posts :value:index}}
+        <li>    
+          <a href="{{=value.link}}">
+            {{=value.name}}
+          </a>
+        </li>
+      {{~}}
+    </ul>
+  </div>
+</div>

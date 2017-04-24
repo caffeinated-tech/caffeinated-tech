@@ -1,4 +1,3 @@
-express = require('express')
 
 VIEW_DIR = './public/views/admin/'
 
@@ -6,18 +5,16 @@ render = (templateFile, data = {}) ->
   template = fs.readFileSync VIEW_DIR + templateFile
   doT.template(template)(data)
 
-AdminModule = 
-  parent: null
-  router: express()
+AdminRouter = express()
 
-AdminModule.router.get '/', (req,res) ->
+AdminRouter.get '/', (req,res) ->
   res.send render('login.html')
 
-AdminModule.router.get '/logout', (req,res) ->
+AdminRouter.get '/logout', (req,res) ->
   delete req.session.userId
   res.redirect '/'
 
-AdminModule.router.get '/panel', Middleware.auth, (req,res) ->
+AdminRouter.get '/panel', Middleware.auth, (req,res) ->
   Models.Definition.find().sort(createdAt: -1).exec()
     .then (definitions) ->
       Models.Post.find().sort(createdAt: -1).exec()
@@ -29,10 +26,9 @@ AdminModule.router.get '/panel', Middleware.auth, (req,res) ->
             posts: for post in posts
               name: post.title
               link: "/v/blog/edit/#{post.id}/#{post.slug}" 
-          console.log definitions.length, posts.length
           res.send render('panel.html', viewData)
 
-AdminModule.router.post '/login', (req, res) ->
+AdminRouter.post '/login', (req, res) ->
   Models.User.findOne {email: req.body.email}, (err, user) ->
     return res.send(null) if err
     user.verifyPassword req.body.password, (err, valid) ->
@@ -43,8 +39,8 @@ AdminModule.router.post '/login', (req, res) ->
 
 
 
-AdminModule.router.on 'mount', (parent) =>
-  @parent = parent
+AdminRouter.on 'mount', (parent) =>
+  console.log 'mounted admin routes'
 
 
-module.exports = AdminModule
+module.exports = AdminRouter

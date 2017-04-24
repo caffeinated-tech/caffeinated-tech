@@ -1,13 +1,14 @@
 #!/usr/bin/env coffee
-global.express = require('express')
 session = require("express-session");
 bodyParser = require('body-parser')
 cookieParser = require('cookie-parser')
 uuidV1 = require('uuid/v1')
+global.Markdown = require('markdown')
+global.express = require('express')
 global.fs = require("fs")
 global.doT = require('dot')
 global.mongoose = require('mongoose')
- 
+
 # mongoose.Promise = require('promise') 
 mongoose.connect 'mongodb://localhost/caffeinated-tech'
 
@@ -31,7 +32,6 @@ global.Models = require('./models/index')
 global.Middleware = require('./middleware/index')
 require('./modules')(Server)
 require('./routers/index')(Server)
-
 
 Server.set 'title', 'caffeinated.tech'
 Server.get '/', (req,res) -> 
