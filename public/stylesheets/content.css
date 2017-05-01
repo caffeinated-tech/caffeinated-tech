@@ -1,24 +1,24 @@
 
-#contents p {
+#contents > p,
+.editor-preview-side > p {
   margin: 0px 0 30px;
   padding:20px 12px 5px 10px;
   /*background-color: #ccc;*/
   color: #ccc;
   position:relative;
-  border-top: 4px solid;
-  border-color:#ccc;
   text-indent: 20px;
   line-height: 1.4em;
   margin-bottom: 3em;
   font-size: 16px;
 }
-#contents form {
-  border-top: 4px solid;
-  padding:15px 0;
-}
 
+#contents blockquote a{
+  float: right;
+  padding-right: 30px;
+}
 #contents blockquote {
-  border-top: 4px solid;
+  border-top: none;
+  position:relative;
   color: #eee;
   font-style: italic;
   margin-bottom: 3em;
@@ -26,20 +26,27 @@
   quotes: "\201C""\201D""\2018""\2019";
 }
 #contents blockquote:before {
+  position: absolute;
+  left:0;
+  top:-15px;
   color: #fff;
   content: open-quote;
   font-size: 4em;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
 }
 #contents blockquote:after {
+  position: absolute;
+  right:0;
+  bottom:5px;
   color: #fff;
   content: close-quote;
   font-size: 4em;
   line-height: 0.1em;
   margin-left: 0.15em;
   vertical-align: -0.6em;
+}
+#contents blockquote p {
+  padding-bottom: 0;
+  margin-bottom:0;
 }
 #contents li {
   color: #ccc;
@@ -48,12 +55,10 @@
   margin-bottom:0;
 }
 #contents ul{
-  border-top: 4px solid;
   list-style-type: none;
   padding:5px 0 0 15px;
 }
 #contents ol {
-  border-top: 4px solid;
   padding:5px 0 0 15px;
 }
 #contents a {
@@ -84,23 +89,36 @@
 #contents label {
   color: #ccc;
 }
-#contents.blog p,
+#contents > * {
+  border-top: 4px solid;  
+}
+#contents > .row {
+  border:none;
+}
+
+#contents.blog blockquote:before,
+#contents.blog blockquote:after,
+#contents.blog blockquote a {
+  color:#004180;
+}
+#contents.glossary blockquote:before,
+#contents.glossary blockquote:after,
+#contents.glossary blockquote a {
+  color:#cc8400;
+}
+
 #contents.blog > * {
   border-color: #004180;
 } 
-#contents.glossary p,
 #contents.glossary > * {
   border-color: #cc8400;
 } 
-#contents.contact p,
 #contents.contact > *{
   border-color: #006f00;
 }
-#contents.profile p,
 #contents.profile > * {
   border-color: #6d006d;
 } 
-
 #contents.home > *{
   border-color:#7b0000;
 }

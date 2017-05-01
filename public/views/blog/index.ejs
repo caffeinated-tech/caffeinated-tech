@@ -1,0 +1,27 @@
+<h2>
+  Blog Posts
+</h2>
+<p>
+  
+</p>
+
+<% for(i=0; i<posts.length; i++) { %>
+   <% post = posts[i]%>
+   <a href="v/glossary/<%= post.id %>/<%post.slug%>">
+    <h3>
+      <%= post.title %>
+    </h3>
+   </a>
+   <p>
+    <%= post.blurb %>
+   </p>
+  </div>
+<% } %>
+
+<% if(morePosts){%>
+  <div class="row bottom">
+    <div class="twelve columns">
+      <a class="button" id="load-more">View more</a>
+    </div>
+  </div>
+<%}%>

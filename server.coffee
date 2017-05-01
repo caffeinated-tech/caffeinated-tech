@@ -6,10 +6,11 @@ uuidV1 = require('uuid/v1')
 global.Markdown = require('markdown')
 global.express = require('express')
 global.fs = require("fs")
-global.doT = require('dot')
+global.EJS = require('ejs')
 global.mongoose = require('mongoose')
+global.Promise = require('promise')
 
-# mongoose.Promise = require('promise') 
+mongoose.Promise = Promise
 mongoose.connect 'mongodb://localhost/caffeinated-tech'
 
 Server = express()

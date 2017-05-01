@@ -7,19 +7,25 @@ module.exports = ->
   $(document).on 'click', 'a#save', (event) ->
     body = window.Editor.simpleMDE.value()
     [metadata, body] = body.split("----")
-    data =  
+    data =
       body: body
     # parse metadata out of post body
     for line in metadata.split("\n")
-      vals = line.split('=>')
+      vals = line.split('=')
       [key, value] = (val.trim() for val in vals)
       continue unless key in METADATA_KEYS
       data[key] = value
-      
+    console.log 'current id', CURRENT_ID  
     console.log data
+
+    to_update = if CURRENT_ID is null
+      'new'
+    else
+      CURRENT_ID
+    
     $.ajax
       method: 'POST'
-      url: "/v/#{CURRENT_SECTION}/new"
+      url: "/v/#{CURRENT_SECTION}/#{to_update}"
       dataType: "json"
       contentType: "application/json; charset=utf-8"
       data: JSON.stringify(data)
@@ -50,7 +56,7 @@ module.exports = ->
 
   window.Editor.initialize = ->
     textarea = $(document).find('#editor textarea')[0]
-    text = textarea.innerHTML
+    text = textarea.value
     window.Editor.simpleMDE = new SimpleMDE
       autofocus: true
       autosave: true

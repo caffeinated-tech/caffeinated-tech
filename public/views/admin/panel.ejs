@@ -1,0 +1,61 @@
+<h2>
+  Admin Panel
+</h2>
+<p>
+  Careful - here be dragons. 
+</p>
+
+<h4>
+  Create / Edit existing content
+</h4>
+<p>
+  Links to open Markdown editor for existing content, or create new contents.
+</p>
+
+<div class="row">
+  <div class="six columns">
+  <h3> Glossary Definitions</h3>
+
+    <br/>
+    <ul>
+      <li>
+        <a 
+          class="button" 
+          href="v/glossary/new">
+          New Definition
+        </a>
+      </li>
+      <br/>
+      <% for(i = 0; i < definitions.length; i++){%>
+        <% definition = definitions[i]%>
+        <li>
+          <a href="<%= definition.link %>">
+            <%= definition.name %>
+          </a>
+        </li>
+      <%}%>
+    </ul>
+  </div>
+  <div class="six columns">
+    <h3> Blog Posts</h3>
+    <br/>
+    <ul> 
+      <li>
+        <a 
+          class="button" 
+          href="v/blog/new">
+          New Post
+        </a>
+      </li>
+      <br/>
+      <% for(i = 0; i < posts.length; i++){%>
+        <% post = posts[i]%>
+        <li>
+          <a href="<%= post.link %>">
+            <%= post.name %>
+          </a> 
+        </li>
+      <%}%>
+    </ul>
+  </div>
+</div>

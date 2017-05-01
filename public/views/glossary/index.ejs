@@ -1,0 +1,27 @@
+<h2>
+  Tech Glossary
+</h2>
+<p>
+  
+</p>
+
+<% for(i=0; i<definitions.length; i++) { %>
+   <% definition = definitions[i]%>
+   <a href="v/glossary/<%= definition.id %>/<%definition.slug%>">
+    <h3>
+      <%= definition.title %>
+    </h3>
+   </a>
+   <p>
+    <%= definition.blurb %>
+   </p>
+  </div>
+<% } %>
+
+<% if(moreDefinitions){%>
+<div class="row bottom">
+  <div class="twelve columns">
+    <a class="button" id="load-more">View more</a>
+  </div>
+</div>
+<%}%>

@@ -3,6 +3,11 @@
 window.SERVER_URL = $('base')[0].href
 window.CONTENTS = $('#contents')
 window.CURRENT_SECTION = null
+window.CURRENT_ID = null
+
+# private constants
+
+BSON_REGEX = /^[a-f\d]{24}$/i
 
 # public method
 
@@ -19,6 +24,7 @@ window.loadPage = (url) ->
 
 loadPageCallback = (data) ->
   CONTENTS.html data
+  parseIdFromUrl()
   if CONTENTS.find('#editor').length > 0
     window.Editor.initialize()
   $('pre code').each (i, e) -> 
@@ -26,6 +32,16 @@ loadPageCallback = (data) ->
 
 loadMoreCallback = (data) ->
   CONTENTS.find('.bottom').before data
+
+parseIdFromUrl = ->
+  new_id = null
+  components = window.location.pathname.split('/')
+  for component in components
+    continue unless BSON_REGEX.test component
+    new_id = component
+    break
+  console.log "new_id", new_id
+  window.CURRENT_ID = new_id
 
 changePageStyle = (url) ->
   window.CURRENT_SECTION = switch 
@@ -47,7 +63,7 @@ module.exports = ->
     return unless this.href
     return unless new RegExp(SERVER_URL).test(targetUrl)
 
-    event.preventDefault() 
+    event.preventDefault()
     loadPage targetUrl
 
   doc.on 'click', 'a#load-more', (event) ->
