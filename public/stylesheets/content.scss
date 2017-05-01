@@ -1,0 +1,220 @@
+#contents,
+.editor-preview-side {
+  > * {
+    border-top: 4px solid;  
+  }
+  > p {
+    margin: 0px 0 30px;
+    padding:20px 12px 5px 10px;
+    /*background-color: #ccc;*/
+    color: #ccc;
+    position:relative;
+    text-indent: 20px;
+    line-height: 1.4em;
+    margin-bottom: 3em;
+    font-size: 16px;
+  }
+  blockquote {
+    border-top: none;
+    position:relative;
+    color: #eee;
+    font-style: italic;
+    margin-bottom: 3em;
+    padding: 0.5em 10px 0.5em 45px;
+    quotes: "\201C""\201D""\2018""\2019";
+    &:before {
+      position: absolute;
+      left:0;
+      top:-15px;
+      color: #fff;
+      content: open-quote;
+      font-size: 4em;
+    }
+    &::after {
+      position: absolute;
+      right:0;
+      bottom:5px;
+      color: #fff;
+      content: close-quote;
+      font-size: 4em;
+    }
+    a {
+      float: right;
+      padding-right: 30px;
+    }
+    p {
+      padding-bottom: 0;
+      margin-bottom:0;
+    }
+  }
+  li {
+    color: #ccc;
+    margin-bottom:0;
+  }
+  ul {
+    list-style-type: none;
+    padding:5px 0 0 15px;
+  }
+  ol {
+    padding:5px 0 0 15px;
+  }
+  a {
+    color: #fff;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom:0px;
+    display: block;
+    padding: 10px 30px;
+    color: #fff;
+    background-image: 
+      linear-gradient(
+        45deg, 
+        rgba(0,0,0,0.1) 25%, 
+        rgba(0,0,0,0.2) 25%, 
+        rgba(0,0,0,0.2) 75%, 
+        rgba(0,0,0,0.1) 75%, 
+        rgba(0,0,0,0.1)), 
+      linear-gradient(
+        45deg, 
+        rgba(0,0,0,0.1) 25%, 
+        rgba(0,0,0,0.2) 25%, 
+        rgba(0,0,0,0.2) 75%, 
+        rgba(0,0,0,0.1) 75%, 
+        rgba(0,0,0,0.1));
+    background-size: 10px 10px;
+    background-position:0 0, 5px 5px
+  }
+  h3 {
+    font-size:20px;
+    background-color: #009fa9;
+    color: white;
+    font-weight:bold;
+    padding:4px 10px 4px 5px;
+    margin:0;
+  }
+
+  h4 {
+    font-weight:bold;
+    font-size:16px;
+    background-color: #009fa9;
+    color: white;
+    position:relative;
+    width:auto;
+    display:inline-block;
+    padding:3px 10px;
+    margin: 0;
+  }
+  label {
+    color: #ccc;
+  }
+  > .row {
+    border:none;
+  }
+
+  &.blog {
+    > * {
+      border-color: #004180;
+    }
+    h2,
+    h3,
+    h4 {
+      background-color: #004180;
+    } 
+    blockquote {
+      &:before,
+      &:after,
+      a {
+        color:#004180;
+      }
+    }
+  }
+  &.glossary 
+    > * {
+      border-color: #cc8400;
+    }
+    h2,
+    h3,
+    h4 {
+      background-color: #cc8400;
+    } 
+    blockquote {
+      &:before,
+      &:after,
+      a {
+        color:#cc8400;
+      }
+    }
+  }
+  &.contact 
+    > * {
+      border-color: #006f00;
+    }
+    h2,
+    h3,
+    h4 {
+      background-color: #006f00;
+    } 
+    blockquote {
+      &:before,
+      &:after,
+      a {
+        color:#006f00;
+      }
+    }
+  }
+  &.profile 
+    > * {
+      border-color: #6d006d;
+    }
+    h2,
+    h3,
+    h4 {
+      background-color: #6d006d;
+    } 
+    blockquote {
+      &:before,
+      &:after,
+      a {
+        color:#6d006d;
+      }
+    }
+  }
+  &.home 
+    > * {
+      border-color: #7b0000;
+    }
+    h2,
+    h3,
+    h4 {
+      background-color: #7b0000;
+    } 
+    blockquote {
+      &:before,
+      &:after,
+      a {
+        color:#7b0000;
+      }
+    }
+  }
+}
+
+#footer {
+  bottom:0;
+  left:0;
+  right:0;
+  margin-top:30px;
+  color:#ccc;
+  font-size:12px;
+  padding:0 20px;
+}
+
+/*skeleton overrides*/
+@media (min-width: 550px){
+  .container {
+      width: 90%;
+  }
+}
+

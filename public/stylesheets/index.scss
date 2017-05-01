@@ -1,0 +1,306 @@
+@import "admin";
+@import "content";
+@import "hexagon";
+@import "highlight";
+@import "normalize";
+@import "simplemde.min";
+@import "skeleton";
+
+
+html {
+  color: #ccc;
+  position:fixed;
+  top:0;
+  bottom: 0;
+  left:0;
+  right:0;
+  overflow:   hidden;
+  background: repeating-linear-gradient(
+    45deg, 
+    rgba(0,0,0,0.95) 25%, 
+    rgba(0,0,0,0.93) 25%, 
+    rgba(0,0,0,0.93) 50%, 
+    rgba(0,0,0,0.95) 50%, 
+    rgba(0,0,0,0.95) 75%, 
+    rgba(0,0,0,0.93) 75%);
+  background-size: 20px 20px;
+}
+body {
+  overflow-y: scroll;
+  height:100%;
+}
+
+a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+a.button,
+a.button:visited{
+  color: #ccc;
+}
+a.button:hover{
+  color: white;
+}
+label {
+  color: #ccc;
+}
+img.logo {
+  display: block;
+  margin: auto;
+  width:100px;
+}
+#contents {
+  position:relative;
+  margin-top:20px;
+}
+
+#contents ul#hexGrid li{
+  margin-bottom: 2em;
+}
+#contents ul#hexGrid{
+  border:none;
+}
+.hex img {
+  max-height:100%;
+  max-width:100%;
+}
+.hex.linkedin a{
+    width:100%;
+    height:100%;
+    background-color: #006fa6;
+    text-align: center;
+}
+.hex.facebook a{
+    width:100%;
+    height:100%;
+    background-color: #295396;
+    text-align: center;
+}
+.hex.googleplus a{
+    width:100%;
+    height:100%;
+    background-color: #db4437;
+    text-align: center;
+}
+.hex.twitter a{
+    width:100%;
+    height:100%;
+    background-color: #1DA1F2;
+    text-align: center;
+}
+.hex.twitter a{
+    width:100%;
+    height:100%;
+    background-color: #1DA1F2;
+    text-align: center;
+}
+.hex.codepen a{
+    width:100%;
+    height:100%;
+    background-color: #000;
+    text-align: center;
+}
+.hex.stackoverflow a{
+    width:100%;
+    height:100%;
+    background-color: #F48024;
+    text-align: center;
+}
+
+
+#contents .title i {
+  color: white;
+}
+.centered {
+  text-align: center;
+}
+.inverted{
+  text-align: center;
+}
+.inverted a{
+  display: inline-block;
+  width:100%;
+  padding: 1px 3px;
+}
+.inverted.blog {
+  background-color: #004180;
+}
+.inverted.glossary {
+  background-color: #cc8400;
+}
+.inverted.contact {
+  background-color: #006f00;
+}
+.inverted.cv {
+  background-color: #6d006d;
+}
+
+.section,
+section {
+  margin: 0px 0 30px;
+  padding:20px 12px 5px 10px;
+  background-color: #ccc;
+  color: #222;
+  position:relative;
+  border-top: 4px solid;
+  border-color:#ccc;
+}
+.section .tag-cloud li {
+  display:inline;   
+  background-color: #333;
+  color: #ccc;
+  padding: 2px 5px;
+  margin: 2px 5px;
+}
+.section li{
+  margin-bottom:0;
+}
+.section ul{
+  list-style-type: none;
+  padding-left:10px;
+}
+.section a {
+  color: #000;
+}
+.section p {
+  text-indent: 20px;
+  line-height: 16px;
+  margin-bottom: 1rem;
+}
+section h3,
+.section h3 {
+  font-size:20px;
+  background-color: #009fa9;
+  color: white;
+  position:absolute;
+  top:-18px;
+  left:-20px;
+  font-weight:bold;
+  padding:4px 10px 4px 5px;
+  margin-bottom: 1rem;
+}
+
+section h4 ,
+.section h4 {
+  font-size:16px;
+  background-color: #009fa9;
+  color: white;
+  left:-20px;
+  position:relative;
+  width:auto;
+  display:inline-block;
+  padding:3px 10px;
+  margin-bottom: 1rem;
+}
+.section label {
+  color: #222;
+}
+.blog section,
+.blog .section {
+  border-color: #004180;
+} 
+.glossary section,
+.glossary .section {
+  border-color: #cc8400;
+} 
+.contact section,
+.contact .section{
+  border-color: #006f00;
+} 
+.profile section,
+.profile .section {
+  border-color: #6d006d;
+} 
+.blog section h3,
+.blog .section h3  {
+  background-color: #004180;
+}
+.glossary section h3,
+.glossary .section h3 {
+  background-color: #cc8400;
+}
+.contact section h3,
+.contact .section h3 {
+  background-color: #006f00;
+}
+.profile section h3,
+.profile section h4,
+.profile .section h3,
+.profile .section h4 {
+  background-color: #6d006d;
+}
+
+.home section h3,
+.home section h4,
+.home .section h3,
+.home .section h4 {
+  background-color:  #7b0000;
+}
+.blog .title{
+  background-color: #004180;
+}
+.glossary .title{
+  background-color: #cc8400;
+}
+.contact .title{ 
+  background-color: #006f00;
+}
+.profile .title{
+  background-color: #6d006d;
+}
+.home .title{
+  background-color:  #7b0000;
+}
+
+#footer {
+  bottom:0;
+  left:0;
+  right:0;
+  margin-top:30px;
+  color:#ccc;
+  font-size:12px;
+  padding:0 20px;
+}
+
+/*skeleton overrides*/
+@media (min-width: 550px){
+  .container {
+      width: 90%;
+  }
+}
+
+#editor {
+  position: fixed;
+  background-color: #fff;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+#editor .editor-preview-side {
+  background: repeating-linear-gradient(
+    45deg, 
+    rgba(0,0,0,0.95) 25%, 
+    rgba(0,0,0,0.93) 25%, 
+    rgba(0,0,0,0.93) 50%, 
+    rgba(0,0,0,0.95) 50%, 
+    rgba(0,0,0,0.95) 75%, 
+    rgba(0,0,0,0.93) 75%);
+  background-size: 20px 20px;
+}
+
+#contents a#save {
+  position: fixed;
+  top: 6px;
+  right: 12px;
+  color: black;
+}
+
+#contents a#metadata {
+  position: fixed;
+  top: 6px;
+  right: 158px;
+  color: black;
+}
