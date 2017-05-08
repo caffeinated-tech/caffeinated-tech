@@ -1,7 +1,7 @@
 @import "admin";
 @import "content";
 @import "hexagon";
-@import "highlight";
+@import "solarized-dark";
 @import "normalize";
 @import "simplemde.min";
 @import "skeleton";
@@ -290,7 +290,14 @@ section h4 ,
     rgba(0,0,0,0.93) 75%);
   background-size: 20px 20px;
 }
+#editor .CodeMirror-sided{
+  width:48% !important;
+}
 
+p code.hljs {
+  padding: 1px 3px;
+  display: inline;
+}
 #contents a#save {
   position: fixed;
   top: 6px;

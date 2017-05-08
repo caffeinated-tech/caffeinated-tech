@@ -10886,7 +10886,7 @@ loadPageCallback = function(data) {
   if (CONTENTS.find('#editor').length > 0) {
     window.Editor.initialize();
   }
-  return $('pre code').each(function(i, e) {
+  return $('pre code,p code').each(function(i, e) {
     return hljs.highlightBlock(e);
   });
 };

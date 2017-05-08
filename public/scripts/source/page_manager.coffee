@@ -27,7 +27,7 @@ loadPageCallback = (data) ->
   parseIdFromUrl()
   if CONTENTS.find('#editor').length > 0
     window.Editor.initialize()
-  $('pre code').each (i, e) -> 
+  $('pre code,p code').each (i, e) -> 
     hljs.highlightBlock e
 
 loadMoreCallback = (data) ->
