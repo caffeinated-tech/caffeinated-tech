@@ -38,6 +38,7 @@ BlogRouter.get '/', (req,res) ->
       data = 
         posts: posts
         morePosts: maxCount > PER_PAGE
+      console.log data
       res.send(render('index', data))
 
 BlogRouter.get '/more', (req,res) ->
@@ -82,6 +83,13 @@ BlogRouter.post '/:id', (req,res) ->
       console.log 'found a post', post
       res.json
         url: "/v/blog/#{post.id}/#{post.slug}"
+
+BlogRouter.get '/:id', (req, res) ->
+  Models.Post.findOne(_id: req.params.id).exec (err, post) ->
+  if err
+    res.redirect "/"
+  else
+    res.redirect "/#{post.id}/#{post.slug}"
 
 BlogRouter.get '/:id/:slug', (req, res) ->
   Models.Post.findOne(_id: req.params.id).exec (err, post) ->

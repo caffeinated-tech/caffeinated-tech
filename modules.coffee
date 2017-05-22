@@ -1,10 +1,10 @@
 module.exports = (Server) ->
   DevelopmentModule = require('./modules/development')
   # AdminModule = require('./modules/admin')
-  HomeModule = require('./modules/home')
+  # HomeModule = require('./modules/home')
   # BlogModule = require('./modules/blog')
-  ContactModule = require('./modules/contact')
-  CVModule = require('./modules/cv')
+  # ContactModule = require('./modules/contact')
+  # CVModule = require('./modules/cv')
 
 
   Server.use DevelopmentModule.requestLoggingMiddleware
@@ -20,7 +20,7 @@ module.exports = (Server) ->
       res.sendFile './index.html', SEND_FILE_OPTIONS
 
   # Server.use '/v/admin', AdminModule.router
-  Server.use '/v/home', HomeModule.router
+  # Server.use '/v/home', HomeModule.router
   # Server.use '/v/blog', BlogModule.router
-  Server.use '/v/contact', ContactModule.router
-  Server.use '/v/profile', CVModule.router
+  # Server.use '/v/contact', ContactModule.router
+  # Server.use '/v/profile', CVModule.router
