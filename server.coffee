@@ -38,4 +38,4 @@ Server.set 'title', 'caffeinated.tech'
 Server.get '/', (req,res) -> 
   res.redirect '/v/home'
 
-Server.listen(8000)
+Server.listen(1337)
