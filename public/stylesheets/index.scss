@@ -36,11 +36,17 @@ a {
   text-decoration: none;
 }
 a.button,
+input[type="button"],
 a.button:visited{
   color: #ccc;
 }
+
+input[type="button"]:hover,
 a.button:hover{
   color: white;
+}
+input[type="button"]:hover{
+  background-color: #444;
 }
 label {
   color: #ccc;

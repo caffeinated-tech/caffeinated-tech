@@ -166,6 +166,9 @@
   line-height: 1.4em;
   margin-bottom: 3em;
   font-size: 16px; }
+  #contents > p.no-bottom-space,
+  .editor-preview-side > p.no-bottom-space {
+    margin-bottom: 0px; }
 
 #contents blockquote,
 .editor-preview-side blockquote {
@@ -239,7 +242,7 @@
   background-color: #009fa9;
   color: white;
   font-weight: bold;
-  padding: 4px 10px 4px 5px;
+  padding: 4px 10px;
   margin: 0; }
 
 #contents h4,
@@ -356,6 +359,12 @@
 .editor-preview-side.home blockquote:after,
 .editor-preview-side.home blockquote a {
   color: #7b0000; }
+
+textarea {
+  resize: vertical; }
+
+#send-copy {
+  line-height: 35px; }
 
 #footer {
   bottom: 0;
@@ -2038,11 +2047,16 @@ a {
   text-decoration: none; }
 
 a.button,
+input[type="button"],
 a.button:visited {
   color: #ccc; }
 
+input[type="button"]:hover,
 a.button:hover {
   color: white; }
+
+input[type="button"]:hover {
+  background-color: #444; }
 
 label {
   color: #ccc; }

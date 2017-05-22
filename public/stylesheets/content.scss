@@ -13,6 +13,9 @@
     line-height: 1.4em;
     margin-bottom: 3em;
     font-size: 16px;
+    &.no-bottom-space{
+      margin-bottom: 0px;
+    }
   }
   blockquote {
     border-top: none;
@@ -93,7 +96,7 @@
     background-color: #009fa9;
     color: white;
     font-weight:bold;
-    padding:4px 10px 4px 5px;
+    padding:4px 10px;
     margin:0;
   }
 
@@ -200,6 +203,14 @@
       }
     }
   }
+}
+
+textarea { 
+  resize: vertical; 
+}
+
+#send-copy{
+  line-height:35px;
 }
 
 #footer {
