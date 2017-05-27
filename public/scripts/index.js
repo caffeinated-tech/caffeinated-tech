@@ -23908,7 +23908,7 @@ CodeMirror.defineMode("gfm", function(config, modeConfig) {
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var initAdmin, initEditor, initPageManager;
+var initAdmin, initContact, initEditor, initPageManager;
 
 window.$ = __webpack_require__(8);
 
@@ -23916,11 +23916,14 @@ initPageManager = __webpack_require__(7);
 
 initAdmin = __webpack_require__(5);
 
+initContact = __webpack_require__(26);
+
 initEditor = __webpack_require__(6);
 
 $(function() {
   initPageManager();
   initAdmin();
+  initContact();
   return initEditor();
 });
 
@@ -28345,6 +28348,35 @@ if (true) {
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+module.exports = function() {
+  return $(document).on('click', '#send-email', function(event) {
+    var data;
+    console.log('send');
+    data = {
+      sendCopy: $('#send-copy input').is(":checked"),
+      email: $('#email')[0].value,
+      name: $('#name')[0].value,
+      message: $('#message')[0].value
+    };
+    console.log(data);
+    return $.ajax({
+      method: 'POST',
+      url: '/v/contact/send_email',
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(response) {
+        return console.log(response);
+      }
+    });
+  });
+};
+
 
 /***/ })
 /******/ ]);
