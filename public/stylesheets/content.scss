@@ -1,7 +1,11 @@
 #contents,
 .editor-preview-side {
-  > * {
-    border-top: 4px solid;  
+
+  hr {
+    margin:0;
+    border:none;
+    height:4px;
+    color:white;
   }
   > p {
     margin: 0px 0 30px;
@@ -51,6 +55,14 @@
       margin:0;
     }
   }
+  a {
+    text-decoration: none;
+    color: #fff;
+    &:hover{
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
   li {
     color: #ccc;
     margin-bottom:0;
@@ -62,12 +74,8 @@
   ol {
     padding:5px 0 0 15px;
   }
-  a {
-    color: #fff;
-    cursor: pointer;
-    text-decoration: underline;
-  }
   h2 {
+    border-bottom: 4px solid;
     text-align: center;
     margin-bottom:0px;
     display: block;
@@ -92,6 +100,7 @@
     background-position:0 0, 5px 5px
   }
   h3 {
+    border-bottom: 4px solid;
     font-size:20px;
     background-color: #009fa9;
     color: white;
@@ -119,12 +128,13 @@
   }
 
   &.blog {
-    > * {
-      border-color: #004180;
+    hr {
+      background-color: #004180;
     }
     h2,
     h3,
     h4 {
+      border-color: #004180;
       background-color: #004180;
     } 
     blockquote {
@@ -136,12 +146,13 @@
     }
   }
   &.glossary  {
-    > * {
-      border-color: #cc8400;
+    hr {
+      background-color: #cc8400;
     }
     h2,
     h3,
     h4 {
+      border-color: #cc8400;
       background-color: #cc8400;
     } 
     blockquote {
@@ -153,12 +164,13 @@
     }
   }
   &.contact { 
-    > * {
-      border-color: #006f00;
+    hr {
+      background-color: #006f00;
     }
     h2,
     h3,
     h4 {
+      border-color: #006f00;
       background-color: #006f00;
     } 
     blockquote {
@@ -170,12 +182,13 @@
     }
   }
   &.profile {
-    > * {
-      border-color: #6d006d;
+    hr {
+      background-color: #6d006d;
     }
     h2,
     h3,
     h4 {
+      border-color: #6d006d;
       background-color: #6d006d;
     } 
     blockquote {
@@ -187,19 +200,20 @@
     }
   }
   &.home {
-    > * {
-      border-color: #7b0000;
+    hr {
+      background-color: #8b8b8b;
     }
     h2,
     h3,
     h4 {
-      background-color: #7b0000;
+      border-color: #8b8b8b;
+      background-color: #646464;
     } 
     blockquote {
       &:before,
       &:after,
       a {
-        color:#7b0000;
+        color:#8b8b8b;
       }
     }
   }

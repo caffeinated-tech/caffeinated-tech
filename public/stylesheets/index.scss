@@ -1,4 +1,4 @@
-@import "admin";
+// @import "admin";
 @import "content";
 @import "hexagon";
 @import "solarized-dark";
@@ -55,6 +55,7 @@ img.logo {
   display: block;
   margin: auto;
   width:100px;
+  margin-top:20px;
 }
 #contents {
   position:relative;

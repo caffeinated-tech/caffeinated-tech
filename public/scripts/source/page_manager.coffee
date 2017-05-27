@@ -48,8 +48,9 @@ changePageStyle = (url) ->
     when /blog/.test url then 'blog'
     when /glossary/.test url then 'glossary'
     when /contact/.test url then 'contact'
-    when /CV/.test url then 'profile'
+    when /profile/.test url then 'profile'
     else 'home'
+    
   console.log 'CURRENT_SECTION', CURRENT_SECTION
   CONTENTS[0].className = CURRENT_SECTION
 

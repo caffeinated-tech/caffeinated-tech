@@ -10920,7 +10920,7 @@ changePageStyle = function(url) {
         return 'glossary';
       case !/contact/.test(url):
         return 'contact';
-      case !/CV/.test(url):
+      case !/profile/.test(url):
         return 'profile';
       default:
         return 'home';
