@@ -10886,7 +10886,7 @@ module.exports = function() {
 /* 8 */
 /***/ (function(module, exports) {
 
-var BSON_REGEX, changePageStyle, loadMoreCallback, loadPageCallback, parseIdFromUrl;
+var BSON_REGEX, changePageStyle, loadMoreCallback, loadPageCallback, parseIdFromUrl, trackPageView;
 
 window.SERVER_URL = $('base')[0].href;
 
@@ -10960,15 +10960,13 @@ changePageStyle = function(url) {
   return CONTENTS[0].className = CURRENT_SECTION;
 };
 
-({
-  trackPageView: function(url) {
-    if (ga === void 0) {
-      return;
-    }
-    ga('set', 'page', url);
-    return ga('send', 'pageview');
+trackPageView = function(url) {
+  if (ga === void 0) {
+    return;
   }
-});
+  ga('set', 'page', url);
+  return ga('send', 'pageview');
+};
 
 module.exports = function() {
   var doc;

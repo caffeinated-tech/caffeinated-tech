@@ -55,7 +55,7 @@ changePageStyle = (url) ->
   console.log 'CURRENT_SECTION', CURRENT_SECTION
   CONTENTS[0].className = CURRENT_SECTION
 
-trackPageView: (url) ->
+trackPageView = (url) ->
   return if ga is undefined
   ga('set', 'page', url)
   ga('send', 'pageview')
