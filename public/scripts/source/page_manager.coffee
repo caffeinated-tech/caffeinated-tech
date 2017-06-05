@@ -12,6 +12,7 @@ BSON_REGEX = /^[a-f\d]{24}$/i
 # public method
 
 window.loadPage = (url) ->
+  trackPageView url
   history.pushState({},'', url)
   CONTENTS.html 'loading...'
   changePageStyle url
@@ -53,6 +54,11 @@ changePageStyle = (url) ->
     
   console.log 'CURRENT_SECTION', CURRENT_SECTION
   CONTENTS[0].className = CURRENT_SECTION
+
+trackPageView: (url) ->
+  return if ga is undefined
+  ga('set', 'page', url)
+  ga('send', 'pageview')
 
 # initializer
 module.exports = ->

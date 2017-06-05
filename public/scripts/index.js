@@ -10899,6 +10899,7 @@ window.CURRENT_ID = null;
 BSON_REGEX = /^[a-f\d]{24}$/i;
 
 window.loadPage = function(url) {
+  trackPageView(url);
   history.pushState({}, '', url);
   CONTENTS.html('loading...');
   changePageStyle(url);
@@ -10958,6 +10959,16 @@ changePageStyle = function(url) {
   console.log('CURRENT_SECTION', CURRENT_SECTION);
   return CONTENTS[0].className = CURRENT_SECTION;
 };
+
+({
+  trackPageView: function(url) {
+    if (ga === void 0) {
+      return;
+    }
+    ga('set', 'page', url);
+    return ga('send', 'pageview');
+  }
+});
 
 module.exports = function() {
   var doc;
