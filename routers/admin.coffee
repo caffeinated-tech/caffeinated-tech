@@ -37,7 +37,9 @@ AdminRouter.get '/panel', Middleware.auth, (req,res) ->
 
 AdminRouter.post '/login', (req, res) ->
   Models.User.findOne {email: req.body.email}, (err, user) ->
-    return res.send(null) if err
+    console.log("err", err)
+    console.log("user", user)
+    return res.send(null) if err or user is null
     user.verifyPassword req.body.password, (err, valid) ->
       return res.send(null) if err or not valid
       req.session.userId = user.id
