@@ -19,6 +19,13 @@
   #contents > p.no-bottom-space,
   .editor-preview-side > p.no-bottom-space {
     margin-bottom: 0px; }
+  #contents > p img,
+  .editor-preview-side > p img {
+    margin: 0px 0 -24px -20px; }
+
+#contents img,
+.editor-preview-side img {
+  max-width: 100%; }
 
 #contents blockquote,
 .editor-preview-side blockquote {

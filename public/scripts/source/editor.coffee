@@ -6,7 +6,7 @@ module.exports = ->
 
   $(document).on 'click', 'a#save', (event) ->
     body = window.Editor.simpleMDE.value()
-    [metadata, body] = body.split("----")
+    [metadata, body] = body.split("++++")
     data =
       body: body
     # parse metadata out of post body

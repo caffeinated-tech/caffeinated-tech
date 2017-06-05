@@ -19,6 +19,12 @@
     &.no-bottom-space{
       margin-bottom: 0px;
     }
+    img {
+      margin: 0px 0 -24px -20px;
+    }
+  }
+  img {
+    max-width: 100%;
   }
   blockquote {
     border-top: none;
