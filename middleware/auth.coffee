@@ -2,7 +2,7 @@
 
 AuthMiddleware = (req, res, next) ->
   # skip auth during development
-  return next()
+  # return next()
   return res.send(null) unless req.session.userId?
   Models.User.findOne
     _id: req.session.userId

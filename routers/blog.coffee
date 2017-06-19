@@ -9,7 +9,6 @@ SEND_FILE_OPTIONS =
     'x-sent': true
 
 render = (templateFile, data = {}) ->
-  console.log 'render'
   path = VIEW_DIR + templateFile + '.ejs'
   template = fs.readFileSync path, 'utf8'
   EJS.render(template, data)
@@ -38,7 +37,6 @@ BlogRouter.get '/', (req,res) ->
       data = 
         posts: posts
         morePosts: maxCount > PER_PAGE
-      console.log data
       res.send(render('index', data))
 
 BlogRouter.get '/more', (req,res) ->
@@ -55,18 +53,15 @@ BlogRouter.get '/more', (req,res) ->
       res.send(render('index', data))
 
 BlogRouter.get '/new', Middleware.auth, (req, res) ->
-  console.log "new blog post"
   res.sendFile 'new.html', SEND_FILE_OPTIONS
 
 BlogRouter.get '/edit/:id/:slug', Middleware.auth, (req, res) ->
-  # console.log '/edit/:id', req.params.id
   Models.Post.findOne(_id: req.params.id).exec()
     .then (post) ->
       html = render 'edit', post
       res.send(html)
 
-# BlogRouter.post '/new', Middleware.auth, (req, res) ->
-BlogRouter.post '/new', (req, res) ->
+BlogRouter.post '/new', Middleware.auth, (req, res) ->
   req.body.slug = req.body.title.replace(/\s+/g, '-').toLowerCase()
   new Models.Post(req.body).save (err, post) ->
     if err
@@ -75,7 +70,7 @@ BlogRouter.post '/new', (req, res) ->
       res.json
         url: "/v/blog/#{post.id}/#{post.slug}"
 
-BlogRouter.post '/:id', (req,res) ->
+BlogRouter.post '/:id', Middleware.auth, (req,res) ->
   req.body.slug = req.body.title.replace(/\s+/g, '-').toLowerCase()
   Models.Post.findByIdAndUpdate(req.params.id, req.body)
     .exec()

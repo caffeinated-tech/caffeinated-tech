@@ -4,6 +4,12 @@ GlossaryRouter = express()
 VIEW_DIR = './public/views/glossary/'
 PER_PAGE = 3
 
+SEND_FILE_OPTIONS = 
+  root: VIEW_DIR
+  dotfiles: 'deny'
+  headers: 
+    'x-sent': true
+
 render = (templateFile, data = {}) ->
   path = VIEW_DIR + templateFile + '.ejs'
   template = fs.readFileSync path, 'utf8'
