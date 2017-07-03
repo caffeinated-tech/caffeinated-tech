@@ -1,4 +1,7 @@
 @charset "UTF-8";
+#contents {
+  min-height: 1000px; }
+
 #contents hr,
 .editor-preview-side hr {
   margin: 0;
@@ -93,7 +96,6 @@
   display: block;
   padding: 10px 30px;
   color: #fff;
-  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.1) 25%, rgba(0, 0, 0, 0.2) 25%, rgba(0, 0, 0, 0.2) 75%, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0.1)), linear-gradient(45deg, rgba(0, 0, 0, 0.1) 25%, rgba(0, 0, 0, 0.2) 25%, rgba(0, 0, 0, 0.2) 75%, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0.1));
   background-size: 10px 10px;
   background-position: 0 0, 5px 5px; }
 
@@ -232,15 +234,6 @@ textarea {
 
 #send-copy {
   line-height: 35px; }
-
-#footer {
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin-top: 30px;
-  color: #ccc;
-  font-size: 12px;
-  padding: 0 20px; }
 
 /*skeleton overrides*/
 @media (min-width: 550px) {
@@ -1901,7 +1894,7 @@ html {
   left: 0;
   right: 0;
   overflow: hidden;
-  background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.95) 25%, rgba(0, 0, 0, 0.93) 25%, rgba(0, 0, 0, 0.93) 50%, rgba(0, 0, 0, 0.95) 50%, rgba(0, 0, 0, 0.95) 75%, rgba(0, 0, 0, 0.93) 75%);
+  background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.99) 25%, rgba(0, 0, 0, 0.9) 25%, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.99) 50%, rgba(0, 0, 0, 0.99) 75%, rgba(0, 0, 0, 0.9) 75%);
   background-size: 20px 20px; }
 
 body {
@@ -1913,15 +1906,16 @@ a {
   font-weight: bold;
   text-decoration: none; }
 
+input {
+  color: black; }
+
+button,
 a.button,
 input[type="button"],
 a.button:visited {
-  color: #ccc; }
+  color: white !important; }
 
-input[type="button"]:hover,
-a.button:hover {
-  color: white; }
-
+button:hover,
 input[type="button"]:hover {
   background-color: #444; }
 
@@ -2131,13 +2125,24 @@ section h4,
   background-color: #7b0000; }
 
 #footer {
+  text-align: center;
   bottom: 0;
-  left: 0;
-  right: 0;
-  margin-top: 30px;
+  margin: 30px 0;
   color: #ccc;
-  font-size: 12px;
-  padding: 0 20px; }
+  font-size: 12px; }
+
+#mailing-list {
+  margin-top: 100px; }
+  #mailing-list span {
+    color: white; }
+  #mailing-list hr {
+    margin: 1em 0; }
+  #mailing-list .row {
+    text-align: center; }
+  #mailing-list input {
+    width: 300px; }
+  #mailing-list .confirmation {
+    display: none; }
 
 /*skeleton overrides*/
 @media (min-width: 550px) {

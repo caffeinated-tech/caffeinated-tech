@@ -23946,7 +23946,7 @@ CodeMirror.defineMode("gfm", function(config, modeConfig) {
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var initAdmin, initContact, initEditor, initPageManager;
+var initAdmin, initContact, initEditor, initMailingList, initPageManager;
 
 window.$ = __webpack_require__(9);
 
@@ -23958,11 +23958,14 @@ initContact = __webpack_require__(6);
 
 initEditor = __webpack_require__(7);
 
+initMailingList = __webpack_require__(27);
+
 $(function() {
   initPageManager();
   initAdmin();
   initContact();
-  return initEditor();
+  initEditor();
+  return initMailingList();
 });
 
 
@@ -28386,6 +28389,34 @@ if (true) {
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+module.exports = function() {
+  var subscribe;
+  subscribe = function(event) {
+    var data;
+    event.preventDefault();
+    data = {
+      email: $('#mailing-list input')[0].value
+    };
+    return $.ajax({
+      method: 'POST',
+      url: '/v/mailing_list/subscribe',
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(response) {
+        $('#mailing-list form').hide();
+        return $('#mailing-list .confirmation').show();
+      }
+    });
+  };
+  return $(document).on('submit', '#mailing-list', subscribe);
+};
+
 
 /***/ })
 /******/ ]);

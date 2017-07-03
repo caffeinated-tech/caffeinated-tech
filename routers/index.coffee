@@ -5,3 +5,4 @@ module.exports = (Server) ->
   Server.use '/v/home', require('./home')
   Server.use '/v/contact', require('./contact')
   Server.use '/v/profile', require('./profile')
+  Server.use '/v/mailing_list', require('./mailing_list')

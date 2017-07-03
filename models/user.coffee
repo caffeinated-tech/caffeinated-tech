@@ -13,6 +13,10 @@ UserSchema = new mongoose.Schema
     type: Boolean
     required: true
     default: false
+  mailingList:
+    type: Boolean
+    required: true
+    default: false
 ,
   timestamps: true
 
