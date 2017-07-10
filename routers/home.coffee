@@ -15,6 +15,7 @@ render = (templateFile, data = {}) ->
 HomeRouter = express()
 
 HomeRouter.get '/', (req,res) ->
-  res.sendFile 'index.html', SEND_FILE_OPTIONS
-
+  html = fs.readFileSync VIEW_DIR+'index.html'
+  SendHTML(req, res, html)
+  
 module.exports = HomeRouter

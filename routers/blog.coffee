@@ -37,7 +37,8 @@ BlogRouter.get '/', (req,res) ->
       data = 
         posts: posts
         morePosts: maxCount > PER_PAGE
-      res.send(render('index', data))
+      html = render('index', data)
+      SendHTML(req, res, html)
 
 BlogRouter.get '/more', (req,res) ->
   skip = parseInt(req.query.count)
@@ -50,22 +51,26 @@ BlogRouter.get '/more', (req,res) ->
       data = 
         posts: posts
         moreDefinitions: maxCount > (PER_PAGE + skip)
-      res.send(render('index', data))
+      html = render('index', data)
+      SendHTML(req, res, html)
+
 
 BlogRouter.get '/new', Middleware.auth, (req, res) ->
-  res.sendFile 'new.html', SEND_FILE_OPTIONS
+  html = fs.readFileSync VIEW_DIR+'new.html'
+  SendHTML(req, res, html)
 
 BlogRouter.get '/edit/:id/:slug', Middleware.auth, (req, res) ->
   Models.Post.findOne(_id: req.params.id).exec()
     .then (post) ->
       html = render 'edit', post
-      res.send(html)
+      SendHTML(req, res, html)
+      
 
 BlogRouter.post '/new', Middleware.auth, (req, res) ->
   req.body.slug = req.body.title.replace(/\s+/g, '-').toLowerCase()
   new Models.Post(req.body).save (err, post) ->
     if err
-      res.send err
+      res.json err
     else
       res.json
         url: "/v/blog/#{post.id}/#{post.slug}"
@@ -75,7 +80,6 @@ BlogRouter.post '/:id', Middleware.auth, (req,res) ->
   Models.Post.findByIdAndUpdate(req.params.id, req.body)
     .exec()
     .then (post) ->
-      console.log 'found a post', post
       res.json
         url: "/v/blog/#{post.id}/#{post.slug}"
 
@@ -88,7 +92,8 @@ BlogRouter.get '/:id', (req, res) ->
 
 BlogRouter.get '/:id/:slug', (req, res) ->
   Models.Post.findOne(_id: req.params.id).exec (err, post) ->
-    res.send Markdown.parse(post.body)
+    html = Markdown.parse(post.body)
+    SendHTML(req, res, html)
 
 BlogRouter.on 'mount', (parent) =>
 	@parent = parent

@@ -15,7 +15,9 @@ render = (templateFile, data = {}) ->
 AdminRouter = express()
 
 AdminRouter.get '/', (req,res) ->
-  res.sendFile 'login.html', SEND_FILE_OPTIONS
+  html = fs.readFileSync VIEW_DIR+'login.html'
+  SendHTML(req, res, html)
+
 
 AdminRouter.get '/logout', (req,res) ->
   delete req.session.userId
@@ -33,19 +35,17 @@ AdminRouter.get '/panel', Middleware.auth, (req,res) ->
             posts: for post in posts
               name: post.title
               link: "/v/blog/edit/#{post.id}/#{post.slug}" 
-          res.send render('panel', viewData)
+          html = render('panel', viewData)
+          SendHTML(req, res, html)
 
 AdminRouter.post '/login', (req, res) ->
   Models.User.findOne {email: req.body.email}, (err, user) ->
-    console.log("err", err)
-    console.log("user", user)
     return res.send(null) if err or user is null
     user.verifyPassword req.body.password, (err, valid) ->
       return res.send(null) if err or not valid
       req.session.userId = user.id
       res.json
         url: "/v/admin/panel"
-
 
 
 AdminRouter.on 'mount', (parent) =>

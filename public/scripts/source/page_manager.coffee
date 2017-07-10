@@ -14,7 +14,7 @@ BSON_REGEX = /^[a-f\d]{24}$/i
 window.loadPage = (url) ->
   trackPageView url
   history.pushState({},'', url)
-  CONTENTS.html 'loading...'
+  # CONTENTS.html 'loading...'
   changePageStyle url
   $.ajax
     method: 'GET'
@@ -82,4 +82,4 @@ module.exports = ->
 
 
   # load the contents for this page
-  loadPage  window.location.href
+  # loadPage  window.location.href

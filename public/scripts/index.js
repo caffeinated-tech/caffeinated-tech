@@ -10929,7 +10929,6 @@ BSON_REGEX = /^[a-f\d]{24}$/i;
 window.loadPage = function(url) {
   trackPageView(url);
   history.pushState({}, '', url);
-  CONTENTS.html('loading...');
   changePageStyle(url);
   return $.ajax({
     method: 'GET',
@@ -11011,7 +11010,7 @@ module.exports = function() {
     event.preventDefault();
     return loadPage(targetUrl);
   });
-  doc.on('click', 'a#load-more', function(event) {
+  return doc.on('click', 'a#load-more', function(event) {
     var currentNumberOfPosts;
     currentNumberOfPosts = CONTENTS.find('.section').length;
     return $.ajax({
@@ -11020,7 +11019,6 @@ module.exports = function() {
       success: loadMoreCallback
     });
   });
-  return loadPage(window.location.href);
 };
 
 

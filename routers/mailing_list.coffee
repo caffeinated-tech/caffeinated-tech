@@ -14,23 +14,8 @@ sendEmail = (recipient, message) ->
     text: message
 
   transporter.sendMail mailOptions, -> null 
-# VIEW_DIR = './public/views/profile/'
-
-# SEND_FILE_OPTIONS = 
-#   root: VIEW_DIR
-#   dotfiles: 'deny'
-#   headers: 
-#     'x-sent': true
-
-# render = (templateFile, data = {}) ->
-#   path = VIEW_DIR + templateFile + '.ejs'
-#   template = fs.readFileSync path, 'utf8'
-#   EJS.render(template, data)
 
 MailingListRouter = express()
-
-# MailingListRouter.get '/', (req,res) ->
-#   res.sendFile 'index.html', SEND_FILE_OPTIONS
 
 MailingListRouter.post '/subscribe', (req,res) ->
   console.log 'subscrbed', req.body.email

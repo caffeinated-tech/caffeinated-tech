@@ -7,17 +7,35 @@ module.exports = (Server) ->
   # CVModule = require('./modules/cv')
 
 
+  VIEW_DIR = './public/views/'
+
+  render = (templateFile, data = {}) ->
+    path = VIEW_DIR + templateFile + '.ejs'
+    template = fs.readFileSync path, 'utf8'
+    EJS.render(template, data)
+
   Server.use DevelopmentModule.requestLoggingMiddleware
 
-  Server.use '/v/*', (req,res,next) -> 
-    # if the request is via ajax, then use the requested route handler.
-    #   otherwise send the index page, which will then fetch the right page by 
-    #  ajax
+  global.SendHTML = (req, res, contents) ->
     if req.header('X-REQUESTED-WITH') is 'XMLHttpRequest'
-      next()
+      res.send contents
     else
-      console.log 'send index.html instead'
-      res.sendFile './index.html', SEND_FILE_OPTIONS
+      console.log 'send in index.html instead', req.originalUrl.split('/')[2]
+      html = render 'index',
+        section: req.originalUrl.split('/')[2]
+        contents: contents
+
+      res.send html
+
+  # Server.use '/v/*', (req,res,next) -> 
+  #   # if the request is via ajax, then use the requested route handler.
+  #   #   otherwise send the index page, which will then fetch the right page by 
+  #   #  ajax
+  #   if req.header('X-REQUESTED-WITH') is 'XMLHttpRequest'
+  #     next()
+  #   else
+  #     console.log 'send index.html instead'
+  #     res.sendFile './index.html', SEND_FILE_OPTIONS
 
   # Server.use '/v/admin', AdminModule.router
   # Server.use '/v/home', HomeModule.router

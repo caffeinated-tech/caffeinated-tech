@@ -35,7 +35,8 @@ render = (templateFile, data = {}) ->
 ContactRouter = express()
 
 ContactRouter.get '/', (req,res) ->
-  res.sendFile 'index.html', SEND_FILE_OPTIONS
+  html = fs.readFileSync VIEW_DIR+'index.html'
+  SendHTML(req, res, html)
 
 ContactRouter.post '/send_email', (req,res) ->
   console.log req.body

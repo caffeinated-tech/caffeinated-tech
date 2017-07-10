@@ -27,6 +27,7 @@ loadDefinitions = (skip = 0) ->
     .skip(PER_PAGE)
     .exec()
 
+# list the first 3 definitions and their blurbs
 GlossaryRouter.get '/', (req,res) ->
   maxCount = 0;
   maxDefinitions()
@@ -37,8 +38,10 @@ GlossaryRouter.get '/', (req,res) ->
       data = 
         definitions: definitions
         moreDefinitions: maxCount > PER_PAGE
-      res.send(render('index', data))
+      html = render('index', data)
+      SendHTML(req, res, html)
 
+# get the next 3 definitions
 GlossaryRouter.get '/more', (req,res) ->
   skip = parseInt(req.query.count)
   maxCount = 0;
@@ -50,35 +53,40 @@ GlossaryRouter.get '/more', (req,res) ->
       data = 
         definitions: definitions
         moreDefinitions: maxCount > (PER_PAGE + skip)
-      res.send(render('index', data))
+      html = render('index', data)
+      SendHTML(req, res, html)
 
+
+# Edit view for a new definition
 GlossaryRouter.get '/new', Middleware.auth, (req, res) ->
   res.sendFile './new.html', SEND_FILE_OPTIONS
+  html = fs.readFileSync VIEW_DIR+'new.html'
+  SendHTML(req, res, html)
 
+# Save a new definition and return the url to view it
 GlossaryRouter.post '/new', Middleware.auth, (req, res) ->
   req.body.slug = req.body.title.replace(/\s+/g, '-').toLowerCase()
   new Models.Definition(req.body).save (err, post) ->
     if err
-      res.send err
+      res.json err
     else
       res.json
         url: "/v/glossary/#{post.id}/#{post.slug}"
 
-
+# Edit view for an existing definition
 GlossaryRouter.get '/edit/:id/:slug', Middleware.auth, (req,res) ->
-  console.log '/edit/:id', req.params.id
   Models.Definition.findOne( _id: req.params.id).exec()
     .then (definition) ->
-      console.log 'found a definition, nowrenderingit'
-      res.send render 'edit', definition
+      html = render 'edit', definition
+      SendHTML(req, res, html)
       
 
+# Update a definition and return the url to view it
 GlossaryRouter.post '/:id', Middleware.auth, (req,res) ->
   Models.Definition
     .findByIdAndUpdate(req.params.id, req.body)
     .exec()
     .then (definition) ->
-      console.log 'found a definition', definition
       res.json
         url: "/v/glossary/#{definition.id}/#{definition.slug}"
 
@@ -87,9 +95,10 @@ GlossaryRouter.get '/:id/:slug', (req, res) ->
     .findOne(_id: req.params.id)
     .exec (err, definition) ->
       if err
-        res.send err
+        res.redirect '/v/glossary'
       else
-        res.send Markdown.parse(definition.body)
+        html = Markdown.parse(definition.body)
+        SendHTML(req, res, html)
 
 GlossaryRouter.on 'mount', (parent) =>
   console.log 'mounted Glossary'
