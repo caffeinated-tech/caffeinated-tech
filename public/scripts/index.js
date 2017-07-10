@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -9509,7 +9509,7 @@ CodeMirror.overlayMode = function(base, overlay, combine) {
 
 (function(mod) {
   if (true) // CommonJS
-    mod(__webpack_require__(0), __webpack_require__(3), __webpack_require__(18));
+    mod(__webpack_require__(0), __webpack_require__(3), __webpack_require__(19));
   else if (typeof define == "function" && define.amd) // AMD
     define(["../../lib/codemirror", "../xml/xml", "../meta"], mod);
   else // Plain browser env
@@ -10789,7 +10789,7 @@ module.exports = function() {
 var METADATA_KEYS,
   indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-window.SimpleMDE = __webpack_require__(24);
+window.SimpleMDE = __webpack_require__(25);
 
 window.Editor = {};
 
@@ -10884,6 +10884,34 @@ module.exports = function() {
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports) {
+
+module.exports = function() {
+  var subscribe;
+  subscribe = function(event) {
+    var data;
+    event.preventDefault();
+    data = {
+      email: $('#mailing-list input')[0].value
+    };
+    return $.ajax({
+      method: 'POST',
+      url: '/v/mailing_list/subscribe',
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(response) {
+        $('#mailing-list form').hide();
+        return $('#mailing-list .confirmation').show();
+      }
+    });
+  };
+  return $(document).on('submit', '#mailing-list', subscribe);
+};
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 var BSON_REGEX, changePageStyle, loadMoreCallback, loadPageCallback, parseIdFromUrl, trackPageView;
@@ -10997,7 +11025,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -21248,7 +21276,7 @@ return jQuery;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21369,7 +21397,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21383,9 +21411,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(10)
-var ieee754 = __webpack_require__(20)
-var isArray = __webpack_require__(21)
+var base64 = __webpack_require__(11)
+var ieee754 = __webpack_require__(21)
+var isArray = __webpack_require__(22)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -23166,7 +23194,7 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23175,7 +23203,7 @@ function isnan (val) {
 
 
 // Requires
-var Typo = __webpack_require__(25);
+var Typo = __webpack_require__(26);
 
 
 // Create function
@@ -23291,7 +23319,7 @@ CodeMirrorSpellChecker.typo;
 module.exports = CodeMirrorSpellChecker;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -23338,7 +23366,7 @@ module.exports = CodeMirrorSpellChecker;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -23406,7 +23434,7 @@ module.exports = CodeMirrorSpellChecker;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -23463,7 +23491,7 @@ module.exports = CodeMirrorSpellChecker;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -23588,7 +23616,7 @@ module.exports = CodeMirrorSpellChecker;
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -23723,7 +23751,7 @@ CodeMirror.defineMode("gfm", function(config, modeConfig) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -23943,14 +23971,14 @@ CodeMirror.defineMode("gfm", function(config, modeConfig) {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var initAdmin, initContact, initEditor, initMailingList, initPageManager;
 
-window.$ = __webpack_require__(9);
+window.$ = __webpack_require__(10);
 
-initPageManager = __webpack_require__(8);
+initPageManager = __webpack_require__(9);
 
 initAdmin = __webpack_require__(5);
 
@@ -23958,7 +23986,7 @@ initContact = __webpack_require__(6);
 
 initEditor = __webpack_require__(7);
 
-initMailingList = __webpack_require__(27);
+initMailingList = __webpack_require__(8);
 
 $(function() {
   initPageManager();
@@ -23970,7 +23998,7 @@ $(function() {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -24060,7 +24088,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -24071,7 +24099,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -25364,7 +25392,7 @@ if (true) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -25414,24 +25442,24 @@ CodeMirror.commands.shiftTabAndUnindentMarkdownList = function (cm) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /*global require,module*/
 
 var CodeMirror = __webpack_require__(0);
-__webpack_require__(15);
-__webpack_require__(23);
-__webpack_require__(13);
+__webpack_require__(16);
+__webpack_require__(24);
+__webpack_require__(14);
 __webpack_require__(2);
 __webpack_require__(1);
-__webpack_require__(14);
-__webpack_require__(16);
+__webpack_require__(15);
 __webpack_require__(17);
+__webpack_require__(18);
 __webpack_require__(3);
-var CodeMirrorSpellChecker = __webpack_require__(12);
-var marked = __webpack_require__(22);
+var CodeMirrorSpellChecker = __webpack_require__(13);
+var marked = __webpack_require__(23);
 
 
 // Some variables
@@ -27448,7 +27476,7 @@ SimpleMDE.prototype.toTextArea = function() {
 module.exports = SimpleMDE;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__dirname, Buffer) {/* globals chrome: false */
@@ -27711,7 +27739,7 @@ Typo.prototype = {
 		}
 		else if (true) {
 			// Node.js
-			var fs = __webpack_require__(26);
+			var fs = __webpack_require__(27);
 			
 			try {
 				if (fs.existsSync(path)) {
@@ -28382,41 +28410,13 @@ Typo.prototype = {
 if (true) {
 	module.exports = Typo;
 }
-/* WEBPACK VAR INJECTION */}.call(exports, "/", __webpack_require__(11).Buffer))
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-/* (ignored) */
+/* WEBPACK VAR INJECTION */}.call(exports, "/", __webpack_require__(12).Buffer))
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports) {
 
-module.exports = function() {
-  var subscribe;
-  subscribe = function(event) {
-    var data;
-    event.preventDefault();
-    data = {
-      email: $('#mailing-list input')[0].value
-    };
-    return $.ajax({
-      method: 'POST',
-      url: '/v/mailing_list/subscribe',
-      dataType: "json",
-      contentType: "application/json; charset=utf-8",
-      data: JSON.stringify(data),
-      success: function(response) {
-        $('#mailing-list form').hide();
-        return $('#mailing-list .confirmation').show();
-      }
-    });
-  };
-  return $(document).on('submit', '#mailing-list', subscribe);
-};
-
+/* (ignored) */
 
 /***/ })
 /******/ ]);
