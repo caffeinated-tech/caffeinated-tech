@@ -72,3 +72,7 @@ module.exports = ->
     setTimeout ->
       window.Editor.simpleMDE.toggleSideBySide()
     ,0
+
+  
+  if CONTENTS.find('#editor').length > 0
+    window.Editor.initialize()

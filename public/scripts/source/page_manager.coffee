@@ -83,3 +83,6 @@ module.exports = ->
 
   # load the contents for this page
   # loadPage  window.location.href
+
+  $('pre code,p code').each (i, e) -> 
+    hljs.highlightBlock e

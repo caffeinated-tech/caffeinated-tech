@@ -1894,7 +1894,7 @@ html {
   left: 0;
   right: 0;
   overflow: hidden;
-  background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.99) 25%, rgba(0, 0, 0, 0.9) 25%, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.99) 50%, rgba(0, 0, 0, 0.99) 75%, rgba(0, 0, 0, 0.9) 75%);
+  background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.99) 25%, rgba(0, 0, 0, 0.93) 25%, rgba(0, 0, 0, 0.93) 50%, rgba(0, 0, 0, 0.99) 50%, rgba(0, 0, 0, 0.99) 75%, rgba(0, 0, 0, 0.93) 75%);
   background-size: 20px 20px; }
 
 body {

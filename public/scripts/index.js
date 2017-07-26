@@ -10860,7 +10860,7 @@ module.exports = function() {
       }
     });
   });
-  return window.Editor.initialize = function() {
+  window.Editor.initialize = function() {
     var text, textarea;
     textarea = $(document).find('#editor textarea')[0];
     text = textarea.value;
@@ -10879,6 +10879,9 @@ module.exports = function() {
       return window.Editor.simpleMDE.toggleSideBySide();
     }, 0);
   };
+  if (CONTENTS.find('#editor').length > 0) {
+    return window.Editor.initialize();
+  }
 };
 
 
@@ -11010,7 +11013,7 @@ module.exports = function() {
     event.preventDefault();
     return loadPage(targetUrl);
   });
-  return doc.on('click', 'a#load-more', function(event) {
+  doc.on('click', 'a#load-more', function(event) {
     var currentNumberOfPosts;
     currentNumberOfPosts = CONTENTS.find('.section').length;
     return $.ajax({
@@ -11018,6 +11021,9 @@ module.exports = function() {
       url: "v/" + CURRENT_SECTION + "/more?count=" + currentNumberOfPosts,
       success: loadMoreCallback
     });
+  });
+  return $('pre code,p code').each(function(i, e) {
+    return hljs.highlightBlock(e);
   });
 };
 
