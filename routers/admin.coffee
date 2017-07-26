@@ -31,10 +31,10 @@ AdminRouter.get '/panel', Middleware.auth, (req,res) ->
           viewData =
             definitions: for definition in definitions
               name: definition.title
-              link: "/v/glossary/edit/#{definition.id}/#{definition.slug}" 
+              link: "/glossary/edit/#{definition.id}/#{definition.slug}" 
             posts: for post in posts
               name: post.title
-              link: "/v/blog/edit/#{post.id}/#{post.slug}" 
+              link: "/blog/edit/#{post.id}/#{post.slug}" 
           html = render('panel', viewData)
           SendHTML(req, res, html)
 
@@ -45,7 +45,7 @@ AdminRouter.post '/login', (req, res) ->
       return res.send(null) if err or not valid
       req.session.userId = user.id
       res.json
-        url: "/v/admin/panel"
+        url: "/admin/panel"
 
 
 AdminRouter.on 'mount', (parent) =>

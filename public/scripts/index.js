@@ -10972,6 +10972,7 @@ parseIdFromUrl = function() {
 };
 
 changePageStyle = function(url) {
+  console.log('changePageStyle', url);
   window.CURRENT_SECTION = (function() {
     switch (false) {
       case !/blog/.test(url):
@@ -11018,10 +11019,11 @@ module.exports = function() {
     currentNumberOfPosts = CONTENTS.find('.section').length;
     return $.ajax({
       method: 'GET',
-      url: "v/" + CURRENT_SECTION + "/more?count=" + currentNumberOfPosts,
+      url: CURRENT_SECTION + "/more?count=" + currentNumberOfPosts,
       success: loadMoreCallback
     });
   });
+  changePageStyle(window.location);
   return $('pre code,p code').each(function(i, e) {
     return hljs.highlightBlock(e);
   });

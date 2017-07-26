@@ -73,7 +73,7 @@ BlogRouter.post '/new', Middleware.auth, (req, res) ->
       res.json err
     else
       res.json
-        url: "/v/blog/#{post.id}/#{post.slug}"
+        url: "/blog/#{post.id}/#{post.slug}"
 
 BlogRouter.post '/:id', Middleware.auth, (req,res) ->
   req.body.slug = req.body.title.replace(/\s+/g, '-').toLowerCase()
@@ -81,7 +81,7 @@ BlogRouter.post '/:id', Middleware.auth, (req,res) ->
     .exec()
     .then (post) ->
       res.json
-        url: "/v/blog/#{post.id}/#{post.slug}"
+        url: "/blog/#{post.id}/#{post.slug}"
 
 BlogRouter.get '/:id', (req, res) ->
   Models.Post.findOne(_id: req.params.id).exec (err, post) ->

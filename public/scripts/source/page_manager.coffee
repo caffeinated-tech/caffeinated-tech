@@ -45,6 +45,7 @@ parseIdFromUrl = ->
   window.CURRENT_ID = new_id
 
 changePageStyle = (url) ->
+  console.log 'changePageStyle', url
   window.CURRENT_SECTION = switch 
     when /blog/.test url then 'blog'
     when /glossary/.test url then 'glossary'
@@ -77,12 +78,12 @@ module.exports = ->
     currentNumberOfPosts = CONTENTS.find('.section').length
     $.ajax
       method: 'GET'
-      url: "v/#{CURRENT_SECTION}/more?count=#{currentNumberOfPosts}"
+      url: "#{CURRENT_SECTION}/more?count=#{currentNumberOfPosts}"
       success: loadMoreCallback
 
 
   # load the contents for this page
   # loadPage  window.location.href
-
+  changePageStyle(window.location)
   $('pre code,p code').each (i, e) -> 
     hljs.highlightBlock e

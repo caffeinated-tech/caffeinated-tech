@@ -71,7 +71,7 @@ GlossaryRouter.post '/new', Middleware.auth, (req, res) ->
       res.json err
     else
       res.json
-        url: "/v/glossary/#{post.id}/#{post.slug}"
+        url: "/glossary/#{post.id}/#{post.slug}"
 
 # Edit view for an existing definition
 GlossaryRouter.get '/edit/:id/:slug', Middleware.auth, (req,res) ->
@@ -88,14 +88,14 @@ GlossaryRouter.post '/:id', Middleware.auth, (req,res) ->
     .exec()
     .then (definition) ->
       res.json
-        url: "/v/glossary/#{definition.id}/#{definition.slug}"
+        url: "/glossary/#{definition.id}/#{definition.slug}"
 
 GlossaryRouter.get '/:id/:slug', (req, res) ->
   Models.Definition
     .findOne(_id: req.params.id)
     .exec (err, definition) ->
       if err
-        res.redirect '/v/glossary'
+        res.redirect '/glossary'
       else
         html = Markdown.parse(definition.body)
         SendHTML(req, res, html)

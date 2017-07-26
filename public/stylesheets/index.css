@@ -103,7 +103,6 @@
 .editor-preview-side h3 {
   border-bottom: 4px solid;
   font-size: 20px;
-  background-color: #009fa9;
   color: white;
   font-weight: bold;
   padding: 4px 10px;
@@ -113,7 +112,6 @@
 .editor-preview-side h4 {
   font-weight: bold;
   font-size: 16px;
-  background-color: #009fa9;
   color: white;
   position: relative;
   width: auto;
@@ -1991,6 +1989,7 @@ img.logo {
   text-align: center; }
 
 .inverted {
+  margin-top: 3px;
   text-align: center; }
 
 .inverted a {
@@ -2045,7 +2044,6 @@ section {
 section h3,
 .section h3 {
   font-size: 20px;
-  background-color: #009fa9;
   color: white;
   position: absolute;
   top: -18px;
@@ -2057,7 +2055,6 @@ section h3,
 section h4,
 .section h4 {
   font-size: 16px;
-  background-color: #009fa9;
   color: white;
   left: -20px;
   position: relative;
