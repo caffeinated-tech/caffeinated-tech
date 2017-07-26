@@ -207,18 +207,13 @@
 .editor-preview-side.profile blockquote a {
   color: #6d006d; }
 
-#contents.home hr,
-.editor-preview-side.home hr {
-  background-color: #8b8b8b; }
-
 #contents.home h2,
 #contents.home h3,
 #contents.home h4,
 .editor-preview-side.home h2,
 .editor-preview-side.home h3,
 .editor-preview-side.home h4 {
-  border-color: #8b8b8b;
-  background-color: #646464; }
+  border-color: #8b8b8b; }
 
 #contents.home blockquote:before, #contents.home blockquote:after,
 #contents.home blockquote a,
@@ -2104,21 +2099,6 @@ section h4,
 .home section h4,
 .home .section h3,
 .home .section h4 {
-  background-color: #7b0000; }
-
-.blog .title {
-  background-color: #004180; }
-
-.glossary .title {
-  background-color: #cc8400; }
-
-.contact .title {
-  background-color: #006f00; }
-
-.profile .title {
-  background-color: #6d006d; }
-
-.home .title {
   background-color: #7b0000; }
 
 #footer {

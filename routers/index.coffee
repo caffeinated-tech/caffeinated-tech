@@ -6,3 +6,7 @@ module.exports = (Server) ->
   Server.use '/contact', require('./contact')
   Server.use '/profile', require('./profile')
   Server.use '/mailing_list', require('./mailing_list')
+
+  Server.get '*', (req, res) ->
+    res.redirect '/'
+
