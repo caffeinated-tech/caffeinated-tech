@@ -5,7 +5,7 @@ module.exports = ->
       password: $('#password')[0].value
     $.ajax
       method: 'POST'
-      url: '/v/admin/login'
+      url: '/admin/login'
       dataType: "json"
       contentType: "application/json; charset=utf-8"
       data: JSON.stringify(data)

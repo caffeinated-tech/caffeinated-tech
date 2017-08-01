@@ -48,8 +48,6 @@ AdminRouter.post '/login', (req, res) ->
         url: "/admin/panel"
 
 
-AdminRouter.on 'mount', (parent) =>
-  console.log 'mounted admin routes'
-
+AdminRouter.on 'mount', (parent) => null
 
 module.exports = AdminRouter

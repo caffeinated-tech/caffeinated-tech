@@ -10741,7 +10741,7 @@ module.exports = function() {
     };
     return $.ajax({
       method: 'POST',
-      url: '/v/admin/login',
+      url: '/admin/login',
       dataType: "json",
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(data),
@@ -10826,7 +10826,7 @@ module.exports = function() {
     to_update = CURRENT_ID === null ? 'new' : CURRENT_ID;
     return $.ajax({
       method: 'POST',
-      url: "/v/" + CURRENT_SECTION + "/" + to_update,
+      url: "/" + CURRENT_SECTION + "/" + to_update,
       dataType: "json",
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(data),
@@ -10850,7 +10850,7 @@ module.exports = function() {
     };
     return $.ajax({
       method: 'POST',
-      url: "/v/glossary/edit/" + _id,
+      url: "/glossary/edit/" + _id,
       dataType: "json",
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(data),
