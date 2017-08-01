@@ -25,7 +25,7 @@ module.exports = (Server) ->
       console.log urlComponents
       html = render 'index', 
         section: urlComponents[1] || 'Web Development'
-        title: urlComponents[3].replace(/-/g, ' ') ||  'Blog'
+        title: (urlComponents[3] ||  'Blog').replace(/-/g, ' ')
         contents: contents 
 
       res.send html
