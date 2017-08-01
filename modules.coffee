@@ -22,9 +22,10 @@ module.exports = (Server) ->
     else
       console.log 'send in index.html instead', req.originalUrl.split('/')[2]
       urlComponents = req.originalUrl.split('/')
+      console.log urlComponents
       html = render 'index', 
-        section: urlComponents[2] || 'Web Development'
-        title: urlComponents[4] ||  'Blog'
+        section: urlComponents[1] || 'Web Development'
+        title: urlComponents[3].replace(/-/g, ' ') ||  'Blog'
         contents: contents 
 
       res.send html
