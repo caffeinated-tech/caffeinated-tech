@@ -92,7 +92,7 @@ BlogRouter.get '/:id', (req, res) ->
 
 BlogRouter.get '/:id/:slug', (req, res) ->
   Models.Post.findOne(_id: req.params.id).exec (err, post) ->
-    html = Markdown.parse(post.body)
+    html = Markdown.makeHtml(post.body)
     SendHTML(req, res, html)
 
 BlogRouter.on 'mount', (parent) =>

@@ -97,7 +97,7 @@ GlossaryRouter.get '/:id/:slug', (req, res) ->
       if err
         res.redirect '/glossary'
       else
-        html = Markdown.parse(definition.body)
+        html = Markdown.makeHtml(definition.body)
         SendHTML(req, res, html)
 
 GlossaryRouter.on 'mount', (parent) =>

@@ -2,14 +2,16 @@
 session = require("express-session");
 bodyParser = require('body-parser')
 cookieParser = require('cookie-parser')
-uuidV1 = require('uuid/v1')
-global.Markdown = require('markdown')
+uuidV1 = require('uuid/v1') 
 global.express = require('express')
 global.fs = require("fs")
 global.EJS = require('ejs')
 global.mongoose = require('mongoose')
 global.Promise = require('promise')
 
+showdown  = require('showdown')
+global.Markdown = new showdown.Converter
+Markdown.setOption 'ghCodeBlocks', true
 mongoose.Promise = Promise
 mongoose.connect 'mongodb://localhost/caffeinated-tech'
 

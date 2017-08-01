@@ -5,6 +5,7 @@ window.CONTENTS = $('#contents')
 window.CURRENT_SECTION = null
 window.CURRENT_ID = null
 
+
 # private constants
 
 BSON_REGEX = /^[a-f\d]{24}$/i

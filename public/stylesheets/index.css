@@ -2142,8 +2142,10 @@ section h4,
   width: 48% !important; }
 
 p code.hljs {
-  padding: 1px 3px;
-  display: inline; }
+  padding: 0;
+  text-indent: 5px;
+  display: inline-block;
+  vertical-align: -6px; }
 
 #contents a#save {
   position: fixed;

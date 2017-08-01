@@ -302,9 +302,13 @@ section h4 ,
 }
 
 p code.hljs {
-  padding: 1px 3px;
-  display: inline;
+  padding: 0;
+  text-indent: 5px;
+  // white-space: normal;
+  display: inline-block;
+  vertical-align: -6px;
 }
+
 #contents a#save {
   position: fixed;
   top: 6px;

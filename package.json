@@ -38,6 +38,7 @@
     "mongoose-bcrypt": "^1.4.2",
     "nodemailer": "^4.0.1",
     "promise": "^7.1.1",
+    "showdown": "^1.7.1",
     "simplemde": "^1.11.2",
     "uuid": "^3.0.1"
   }
