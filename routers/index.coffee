@@ -1,5 +1,5 @@
 module.exports = (Server) ->
-  Server.use '/glossary', require('./glossary')
+  # Server.use '/glossary', require('./glossary')
   Server.use '/blog', require('./blog')
   Server.use '/admin', require('./admin')
   Server.use '/', require('./home')
@@ -11,6 +11,6 @@ module.exports = (Server) ->
     res.type 'text/plain'
     res.send "User-agent: *\nDisallow: "
     
-  Server.get '*', (req, res) ->
+  Server.all '*', (req, res) ->
     res.redirect '/'
 

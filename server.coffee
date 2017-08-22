@@ -9,6 +9,7 @@ global.EJS = require('ejs')
 global.mongoose = require('mongoose')
 global.Promise = require('promise')
 
+helmet = require('helmet')
 showdown  = require('showdown')
 global.Markdown = new showdown.Converter
 Markdown.setOption 'ghCodeBlocks', true
@@ -23,9 +24,13 @@ global.SEND_FILE_OPTIONS =
   headers: 
     'x-sent': true
 
+# helmet protects from common exploits and atacks 
+Server.use helmet()
 Server.use express.static('public')
 Server.use cookieParser()
 Server.use bodyParser.json()
+# tell node it's behind apache reverse proxy
+Server.set 'trust proxy', 1
 Server.use session(
   genid: uuidV1
   secret: '1iOutbP721MdKINtHai5bzzAH8lrQMYe'
