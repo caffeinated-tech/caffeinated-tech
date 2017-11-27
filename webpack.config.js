@@ -1,20 +1,20 @@
-module.exports = {
-  entry: "./public/scripts/source/index.coffee",
+var config = {
+  entry: './src/index.jsx', // entry point
   output: {
-      path: __dirname,
-      filename: "public/scripts/index.js"
+    filename: './dist/index.js', // place where bundled app will be served
   },
   module: {
-    rules: [
+    loaders: [
       {
-        test: /\.coffee$/,
-        use: [
-          {
-            loader: 'coffee-loader',
-            options: { sourceMap: true }
-          }
-        ]
+        test: /\.jsx?$/, // search for js files 
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react'] // use es2015 and react
+        }
       }
     ]
   }
-}
+};
+
+module.exports = config;
