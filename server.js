@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server';
-import App from './src/app.jsx';
 import express from 'express';
+import App from './src/app.jsx';
 
 const Server = express()
      
-
+Server.use(express.static('dist'))
 
 Server.get('/', (req, res) => {
 	// TODO: sub html into index.html
