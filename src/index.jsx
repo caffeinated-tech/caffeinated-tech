@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app.jsx';
+import { ClientPage } from './app.jsx';
+import './stylesheets/index.scss'
  
-ReactDOM.render(<App />, document.getElementById('app'));
+function run(){
+	ReactDOM.hydrate(<ClientPage/>, document.querySelector('#app-mount'));
+}
 
-export default App;
+window.addEventListener('DOMContentLoaded', run, false);
