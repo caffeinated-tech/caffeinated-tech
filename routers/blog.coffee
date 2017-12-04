@@ -42,6 +42,7 @@ BlogRouter.get '/', (req,res) ->
 
 BlogRouter.get '/more', (req,res) ->
   skip = parseInt(req.query.count)
+  return res.redirect '/' unless req.query.count?
   maxCount = 0;
   maxPosts()
     .then (count) ->
@@ -84,14 +85,17 @@ BlogRouter.post '/:id', Middleware.auth, (req,res) ->
         url: "/blog/#{post.id}/#{post.slug}"
 
 BlogRouter.get '/:id', (req, res) ->
+  return res.redirect '/' unless req.params.id?
   Models.Post.findOne(_id: req.params.id).exec (err, post) ->
-  if err
-    res.redirect "/"
-  else
+    return res.redirect '/' if err?
+
     res.redirect "/#{post.id}/#{post.slug}"
 
 BlogRouter.get '/:id/:slug', (req, res) ->
+  return res.redirect '/' unless req.params.id?
   Models.Post.findOne(_id: req.params.id).exec (err, post) ->
+    return res.redirect '/' if err?
+    
     html = Markdown.makeHtml(post.body)
     SendHTML(req, res, html)
 
