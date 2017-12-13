@@ -1,7 +1,7 @@
-#contents {
+main.container {
   min-height:1000px;
 }
-#contents,
+main.container,
 .editor-preview-side {
 
   hr {
@@ -29,40 +29,40 @@
   img {
     max-width: 100%;
   }
-  blockquote {
-    border-top: none;
-    position:relative;
-    color: #eee;
-    font-style: italic;
-    margin-bottom: 3em;
-    padding: 0.5em 10px 0.5em 45px;
-    quotes: "\201C""\201D""\2018""\2019";
-    &:before {
-      position: absolute;
-      left:0;
-      top:20px;
-      color: #fff;
-      content: open-quote;
-      font-size: 4em;
-    }
-    &::after {
-      position: absolute;
-      right:0;
-      bottom:5px;
-      color: #fff;
-      content: close-quote;
-      font-size: 4em;
-    }
-    a {
-      float: right;
-      padding-right: 30px;
-    }
-    p {
-      border-top: none;
-      padding: 0;
-      margin:0;
-    }
-  }
+  // blockquote {
+  //   border-top: none;
+  //   position:relative;
+  //   color: #eee;
+  //   font-style: italic;
+  //   margin-bottom: 3em;
+  //   padding: 0.5em 10px 0.5em 45px;
+  //   quotes: "\201C""\201D""\2018""\2019";
+  //   &:before {
+  //     position: absolute;
+  //     left:0;
+  //     top:20px;
+  //     color: #fff;
+  //     content: open-quote;
+  //     font-size: 4em;
+  //   }
+  //   &::after {
+  //     position: absolute;
+  //     right:0;
+  //     bottom:5px;
+  //     color: #fff;
+  //     content: close-quote;
+  //     font-size: 4em;
+  //   }
+  //   a {
+  //     float: right;
+  //     padding-right: 30px;
+  //   }
+  //   p {
+  //     border-top: none;
+  //     padding: 0;
+  //     margin:0;
+  //   }
+  // }
   a {
     text-decoration: none;
     color: #fff;
