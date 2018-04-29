@@ -89,20 +89,20 @@
     display: block;
     padding: 10px 30px;
     color: #fff;
-    // background-image: 
+    // background-image:
     //   linear-gradient(
-    //     45deg, 
-    //     rgba(0,0,0,0.1) 25%, 
-    //     rgba(0,0,0,0.2) 25%, 
-    //     rgba(0,0,0,0.2) 75%, 
-    //     rgba(0,0,0,0.1) 75%, 
-    //     rgba(0,0,0,0.1)), 
+    //     45deg,
+    //     rgba(0,0,0,0.1) 25%,
+    //     rgba(0,0,0,0.2) 25%,
+    //     rgba(0,0,0,0.2) 75%,
+    //     rgba(0,0,0,0.1) 75%,
+    //     rgba(0,0,0,0.1)),
     //   linear-gradient(
-    //     45deg, 
-    //     rgba(0,0,0,0.1) 25%, 
-    //     rgba(0,0,0,0.2) 25%, 
-    //     rgba(0,0,0,0.2) 75%, 
-    //     rgba(0,0,0,0.1) 75%, 
+    //     45deg,
+    //     rgba(0,0,0,0.1) 25%,
+    //     rgba(0,0,0,0.2) 25%,
+    //     rgba(0,0,0,0.2) 75%,
+    //     rgba(0,0,0,0.1) 75%,
     //     rgba(0,0,0,0.1));
     background-size: 10px 10px;
     background-position:0 0, 5px 5px
@@ -142,7 +142,7 @@
     h4 {
       border-color: #004180;
       background-color: #004180;
-    } 
+    }
     blockquote {
       &:before,
       &:after,
@@ -160,7 +160,7 @@
     h4 {
       border-color: #cc8400;
       background-color: #cc8400;
-    } 
+    }
     blockquote {
       &:before,
       &:after,
@@ -169,7 +169,7 @@
       }
     }
   }
-  &.contact { 
+  &.contact {
     hr {
       background-color: #006f00;
     }
@@ -178,7 +178,7 @@
     h4 {
       border-color: #006f00;
       background-color: #006f00;
-    } 
+    }
     blockquote {
       &:before,
       &:after,
@@ -196,7 +196,7 @@
     h4 {
       border-color: #6d006d;
       background-color: #6d006d;
-    } 
+    }
     blockquote {
       &:before,
       &:after,
@@ -212,7 +212,7 @@
     h3,
     h4 {
       border-color: #8b8b8b;
-    } 
+    }
     blockquote {
       &:before,
       &:after,
@@ -223,19 +223,11 @@
   }
 }
 
-textarea { 
-  resize: vertical; 
+textarea {
+  resize: vertical;
 }
 
 #send-copy{
   line-height:35px;
-}
-
-
-/*skeleton overrides*/
-@media (min-width: 550px){
-  .container {
-      width: 90%;
-  }
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import express from 'express';
-import { ServerPage } from './src/app.jsx';
+import { ServerPage } from './src/js/app.jsx';
 
 const Server = express()
 console.log('ServerPage', ServerPage);

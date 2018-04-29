@@ -1,5 +1,5 @@
 var config = {
-  entry: './src/index.jsx', // entry point
+  entry: './src/js/index.jsx', // entry point
   output: {
     filename: './dist/index.js', // place where bundled app will be served
   },

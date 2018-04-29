@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Footer extends React.Component {
    render() {
       return (
-        <footer className="page-footer green darken-2">
+        <footer className="page-footer grey darken-3">
           <div className="container">
             <div className="row">
               <div className="col s12">
@@ -14,7 +14,7 @@ class Footer extends React.Component {
               </div>
             </div>
           </div>
-          <div className="footer-copyright">
+          <div className="footer-copyright grey darken-4">
             <div className="container">
             © 2017 Liam Krewer
             <Link to={"/contact"} className="grey-text text-lighten-4 right">

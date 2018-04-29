@@ -1,5 +1,5 @@
 // @import "admin";
-@import "content";
+// @import "content";
 @import "hexagon";
 @import "solarized-dark";
 @import "normalize";
@@ -28,12 +28,23 @@ html {
 body {
   overflow-y: scroll;
   height:100%;
+  color:red !important;
 }
 a {
   color: white;
   font-weight: bold;
   text-decoration: none;
 }
+
+h2{
+  color:red;
+}
+
+
+
+
+
+
 input {
   color:black;  
 }
@@ -267,13 +278,6 @@ section h4 ,
   }
   .confirmation {
     display: none;
-  }
-}
-
-/*skeleton overrides*/
-@media (min-width: 550px){
-  .container {
-      width: 90%;
   }
 }
 
