@@ -1,0 +1,112 @@
+@font-face {
+  font-family: "Fira Code";
+  src: url(../fonts/FiraCode-Regular.otf);
+}
+a {
+  text-decoration: none;
+  color:white;
+  font-weight:  bold;
+  cursor:   pointer;  
+}
+a:hover {
+  text-decoration: underline  ;
+}
+p {
+  color: #adadad;
+  text-indent:2em;
+}
+html {
+  padding:0;
+  margin: 0;
+  font-size:18px;
+}
+body {
+  padding:0;
+  margin: 0;
+  font-family:"Fira Code";
+  background-color: #202020;
+}
+h2 {
+  background-color: #004180;
+  display: inline-block;
+  padding: 10px 50px;
+
+  color: white;
+}
+h3 {
+  border-bottom: 2px solid #004180;
+  display: inline-block;
+  padding: 10px 50px;
+
+  color: white;
+}
+img {
+  max-width:100%;
+}
+
+content {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 0 50px;
+  max-width:1550px;
+  margin:0 auto;
+}
+
+
+blockquote {
+  border-top: none;
+  position: relative;
+  color: #eee;
+  font-style: italic;
+  margin-bottom: 3em;
+  padding: 0.5em 10px 0.5em 45px;
+  quotes: "“" "”" "‘" "’";
+}
+blockquote:before {
+  position: absolute;
+  left: 0;
+  color: white;
+  content: open-quote;
+  font-size: 4em;
+}
+blockquote:after {
+  position: absolute;
+  right: 0;
+  color: white;
+  content: close-quote;
+  font-size: 4em;
+}
+blockquote a {
+
+  position: absolute;
+  right: 25px;
+  bottom: 0;
+}
+
+pre[class*="language-"] {
+    background: #2a2a2a !important;
+}
+
+code {
+  border: 1px solid #777;
+}
+pre code {
+  border: none;
+}
+
+aside {
+
+  border: 1px solid #777;
+  color: #ccc;
+  padding: 5px;
+}
+
+@media only screen and (max-width: 420px) {
+  html {
+    /*font-size:16px;*/
+  }
+  content {
+    padding: 0 10px;
+  }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- SEO -->
+  <title>caffeinated.tech</title>
+  <meta name="author" content="liam@caffeinated.tech">
+  
+  <!-- CSS -->
+  <link href="stylesheets/prism.css" rel="stylesheet">
+  <link href="stylesheets/index.css" rel="stylesheet">
+
+  
+  <!-- Load templates -->
+  <script>
+    function loadTemplate(e) {
+      let template = e.target.import.querySelector('template')
+      let name = template.getAttribute('name')
+      var proto = Object.create(HTMLElement.prototype, {
+        createdCallback: {
+          value: function () {
+            var clone = document.importNode(template.content, true)
+            this.createShadowRoot().appendChild(clone)
+          }
+        }
+      })
+      document.registerElement(name, { prototype: proto })
+    }
+  </script>
+  <!-- Import reusable components -->
+  <link rel="import" href="templates/header.html" onload="loadTemplate(event)">
+  <link rel="import" href="templates/footer.html" onload="loadTemplate(event)">
+</head>
+<body>
+  <ct-header></ct-header>
+  <content>
+    
+  </content>
+ 
+  <ct-footer></ct-footer>
+  <script type="text/javascript" src="public/scripts/prism.js"></script>
+</body>
+</html>

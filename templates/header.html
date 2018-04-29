@@ -1,0 +1,80 @@
+<template name="ct-header">
+  <style>
+    @font-face {
+      font-family: "Fira Code";
+      src: url(../fonts/FiraCode-Regular.otf);
+    }
+    a {
+      text-decoration: none;
+    }
+    p {
+      color: #adadad;
+      text-indent:2em;
+    }
+    #logo {
+      display: inline-block;
+      margin: auto;
+      margin-top: 20px;
+      text-align: center;
+      color:white;
+    }
+    #logo img {
+      display: block;
+      margin: auto;
+      width: 100px;
+    }
+    nav {
+      width:100%;
+      display: flex;
+      justify-content: space-around;
+      max-width: 600px;
+    }
+    nav a {
+      transition: padding 0.5s;
+      display: inline-block;
+      color: white;
+      background-color: red;
+      padding:3px 40px 5px;
+    }
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction:column;
+    }
+    hr {
+      width:100%;
+      max-width:800px;
+      margin:20px auto;
+    }
+    .blog {
+      background-color: #004180;
+    }
+    .profile {
+      background-color: #6d006d;
+    }
+    .contact {
+      background-color: #006f00;
+    }
+
+    @media only screen and (max-width: 420px) {
+      nav a {
+        padding:3px 10px 5px;
+      }
+    }
+  </style>
+  <header>
+    <a id="logo" href="/index.html">
+      <img src="/images/ct-logo-outline.png">
+      <h1>caffeinated.tech</h1>
+      <p>A tech blog by a coffee addled programmer</p>
+    </a>
+    <br>
+    <nav>
+      <a class="blog" href="/index.html">blog</a>
+      <a class="profile" href="/profile.html">profile</a>
+      <a class="contact" href="/contact.html">contact</a>
+    </nav>
+    <hr>
+  </header>
+</template>

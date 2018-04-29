@@ -19,4 +19,9 @@
 - Add Expires headers
 - Configure entity tags (ETags)
 - Reduce the number of DOM elements
-- 
+
+## Design
+
+- add an exclamation mark icon as a before field to aside element
+- add a paperclip icon as a before to h2-h6 fields
+- consider making custom h1-h6 fields which include anchors and markup

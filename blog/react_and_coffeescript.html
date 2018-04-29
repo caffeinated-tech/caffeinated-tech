@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/images/favicon.png" />
+
+  <!-- SEO -->
+  <title>caffeinated.tech</title>
+  <meta name="author" content="liam@caffeinated.tech">
+  
+  <!-- CSS -->
+  <link href="/stylesheets/prism.css" rel="stylesheet">
+  <link href="/stylesheets/index.css" rel="stylesheet">
+
+  
+  <!-- Load templates -->
+  <script>
+    function loadTemplate(e) {
+      let template = e.target.import.querySelector('template')
+      let name = template.getAttribute('name')
+      var proto = Object.create(HTMLElement.prototype, {
+        createdCallback: {
+          value: function () {
+            var clone = document.importNode(template.content, true)
+            this.createShadowRoot().appendChild(clone)
+          }
+        }
+      })
+      document.registerElement(name, { prototype: proto })
+    }
+  </script>
+  <!-- Import reusable components -->
+  <link rel="import" href="/templates/header.html" onload="loadTemplate(event)">
+  <link rel="import" href="/templates/footer.html" onload="loadTemplate(event)">
+</head>
+<body>
+  <ct-header></ct-header>
+  <content>
+    <h2 id="Coffeescript and React"><a href="#Coffeescript and React">Coffeescript and React ( without JSX )</a></h2>    
+    <p> 
+      
+    </p>
+    
+    <h3 id="Coffeescript"><a href="#Coffeescript">Coffeescript</a></h3>    
+    <p>
+      Coffeescript is a Javascript superscript (it transpiles to Javascript) similar to TypeScript and ActiveScript. It was written in 09/10 to show off "the good parts" of Javascript. It ships as the default Javascript engine with Ruby on Rails since version 3.1 which has helped make it one of the most popular JavaScript superscript on Github to date.
+    </p>
+    <blockquote>
+      <p>
+        Underneath that awkward Java-esque patina, JavaScript has always had a gorgeous heart. CoffeeScript is an attempt to expose the good parts of JavaScript in a simple way.
+       <a href="http://coffeescript.org/">-- coffeescript.org</a>
+      </p>
+    </blockquote>
+
+    <h3 id="ReactJS"><a href="#ReactJS">ReactJS</a></h3>    
+    <p>
+      React is the front end view library (note: it's not a framework) by Facebook which is heralded by developers for making complex UIs easy to manage, while (often) improving performance of web applications. React's core concept is stateful views. Given the same state it will always render the same view, regardless of how it arrived at this state. It was built to erradicate awkward to reproduce errors from complex UIs, as detailed in <a href="https://www.youtube.com/watch?v=XxVg_s8xAms" target="_blank">the presentation introducing ReactJS</a> in 2013 by Tom Occhino and Jordan Walke.  
+    </p>
+    <p>
+      It comes with it's own language, JSX, which allows the use of HTML-esque XML markup to create view components inside Javascript files. Think of your typical templating language which embeds code inside a HTML view, only in reverse. 
+    </p>
+    <p>
+      But honestly, I'm not a fan of it. As a Coffeescript dev, the idea of all those extra angle brackets from the JSX syntax inside the render method is unappealing. A side effect of having your view inside your code, is what happens when you want code inside your view (eg. for attaching click listeners or binding values). The result is deeply nested : javascript expressions inside curly braces inside HTML like markup inside your JS file. Because you are limited to JS expressions inside the view ( eg. text within a span, conditional classes) means that you have to resort to tertiary operators or anonymous, self-executing functions rather than the more legible <code class="language-javascript">if</code> / <code class="language-javascript">else</code> statements.
+    </p>
+    <p>
+      Take a look at a basic form component straight from the <a href="https://facebook.github.io/react/docs/forms.html">React docs</a>
+    </p>
+    <pre><code class="language-javascript">
+      class NameForm extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {value: ''};
+
+          this.handleChange = this.handleChange.bind(this);
+          this.handleSubmit = this.handleSubmit.bind(this);
+        }
+
+        handleChange(event) {
+          this.setState({value: event.target.value});
+        }
+
+        handleSubmit(event) {
+          alert('A name was submitted: ' + this.state.value);
+          event.preventDefault();
+        }
+
+        render() {
+          return (
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                Name:
+                <input type="text" value={this.state.value} onChange={this.handleChange} />
+              </label>
+              <input type="submit" value="Submit" />
+            </form>
+          );
+        }
+      }
+    </code></pre>
+    <p>
+      The React component representing a form with an input element is represented as an ES6 Class. When constructed, the component is assigned a base <code class="javascript">state</code> where the input value will be saved. This state is used within the render method, which is the equivalent of a one-way data binding in frameworks like AngularJS. To make the view update when the user updates the value in the text input field, an <code class="javascript">onChange</code> handler needs to be attached, which will update the state via the <code class="javascript">this.setState</code> method. This triggers a re-render of the component with the updated value.
+    </p>
+    <p>
+      This value can be pulled from the state to be used in the <code class="javascript">onSubmit</code> handler, where you could post it to a server or persist in localstorage. But one caveat is the need for binding the component instance to the event listeners, as otherwise the event would override <code class="javascript">this</code> within the scope of the callback methods. 
+    </p>
+    <p>
+      It's all fairly straightforward, but it's also a trivial example. It can be made even cleaner by dropping the JSX syntax and rewriting the whole thing in Coffeescript
+    </p>
+
+    <h2 id="Converting_to_Coffeescript"><a href="#Converting_to_Coffeescript">Converting to Coffeescript</a></h2>
+    
+    <h3 id="Replacing_JSX"><a href="#Replacing_JSX">Replacing JSX</a></h3>
+    <p>
+      It is of course possible to write React without JSX in vanilla Javascript. But without JSX, we need to manually call of the <code class="language-javascript">React.DOM</code> factories to build components out of the React representations of DOM elements. Markup as simple as the form above becomes convoluted when we have to call the methods and pass it object properties and child components.
+    </p>
+    <p>
+      Here is the render method in vanilla Javascript:
+    </p>
+    <pre><code class="language-javascript">
+      render() {
+        return React.DOM.form({ onSubmit: this.handleSubmit },
+          React.DOM.label({}, "Name", 
+            React.DOM.input({ type: 'text', value: this.state.value, onChange: this.handleChange })
+          )
+          React.DOM.input({ type: 'submit', value: 'Submit' })
+        )
+      }  
+    </code></pre>
+    <p>
+      It's not pretty, especially due to the deeply nested DOM components (<code class="language-javascript">React.DOM.x</code>). But there are a lot of Coffeescript features which come in useful with React.
+    </p>
+    
+    <h3 id="Destructuring_Assignment"><a href="#Destructuring_Assignment">Destructuring Assignment</a></h3>
+    <p>
+      The <a href="http://coffeescript.org/#destructuring" target="_blank">destructuring assignment</a> allows us to pull object properties into separate variables with ease. Using this you can pull only those DOM elements which you need for each component into the parent scope:
+    </p> 
+    <aside>
+      <strong>NOTE:</strong> This is possible in Javascript since ES6 too (see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank">destructuring assignment documentation on MDN</a> for details)
+    </aside>
+    <pre><code class="language-coffeescript">
+      { form, label, input } = React.DOM
+    </code></pre>
+
+    <h3 id="this"><a href="#this">@ === this</a></h3>    
+    <p>
+      A useful shortcut in coffeescript is that the <code class="language-coffeescript">@</code> symbol refers to <code  class="language-coffeescript">this</code>. This is a convention borrowed from ruby where <code  class="language-coffeescript">@</code> denotes any instance variables. If you want to access a property on the <code  class="language-coffeescript">this</code>, then you can even skip the dot :
+    </p>
+    <pre><code  class="language-coffeescript">
+      form
+        onSubmit: @handleSubmit
+    </code></pre>
+    <p>
+      Here you can already see the <code  class="language-coffeescript">form</code> factory which was pulled from <code  class="language-coffeescript">React.DOM</code> being called straight from the root scope within our file.
+    </p>
+
+    <h3 id="Indentation_instead_of_brackets"><a href="#Indentation_instead_of_brackets">Indentation instead of brackets</a></h3>    
+    <p>
+      This is the one feature of Coffeescript which got me hooked. Once you remove all the excessive brackets, semicolons and commas from Javascript, it becomes an elegant language. No brackets are used to call a function (given that it is being passed arguments). No brackets are needed to wrap a function body or code block. No brackets are needed to denote an object and commas are optional. Here is the resulting render function in Coffeescript
+    </p>
+    <pre><code  class="language-coffeescript">
+      render: ->
+        form
+          onSubmit: @handleSubmit
+          label null,
+            'name'
+            input
+              type: 'text'
+              value: @state.value
+              onChange: @handleChange
+          input
+            type: 'submit'
+            'Submit'
+    </code></pre>
+    <p>
+      Isn't it beautiful? 
+    </p>
+    <p>
+      There are two Coffeescript features involved here. If you call a method in Coffeescript, and the first param is an object, then you can just pass it starting on the next line. Eg, the <code  class="language-coffeescript">setState</code> call from <code  class="language-coffeescript">handleChange</code> :
+    </p>
+    <pre><code  class="language-coffeescript">
+      @setState
+        value: event.target.value
+    </code></pre>
+    <p>
+      If the object argument has more props, just continue adding them on new lines. 
+    </p>
+    <p>
+      Secondly, the remaining <code  class="language-coffeescript">children</code> which are being passed to the method after the initial properties object are distinguished from the object simply by keeping the same indentation as the object, but not having keys. Each child component can the be passed on it's own line, and via indentation, you can place components inside the same parent even if they have complex children - eg. the submit button and label are both direct children of  the form.
+    </p>
+    <p>
+      The closing tags from JSX, which became closing parenthesis in Javascript can be dropped as they simply aren't required.
+    </p>
+    <p>
+      I've also left out the <code class="language-coffeescript">return</code> statement, as Coffeescript implicitly returns the last statement in every block.
+      But you will notice one caveat in the above example, which is that we have to pass <code class="language-coffeescript">null</code> to <code class="language-coffeescript">label</code> as it has no properties, but does have a child (the text <code class="language-coffeescript">'name'</code>). Ideally I would like to see React components to accept only a child element (or array) to clean out this one inconsistency.
+    </p>
+
+    <h3 id="Binding_context"><a href="#Binding_context">Binding context</a></h3>    
+    <p>
+      When dealing with DOM event listeners, we need to remember that <code  class="language-coffeescript">this</code> inside a callback refers to the element which the event was caught on. But in React we usually want it to be the component, as we can access the DOM element via the <code  class="language-coffeescript">event</code> argument. 
+      This is why the <code  class="language-coffeescript">handleChange</code> and <code  class="language-coffeescript">handleSubmit</code> methods have <code  class="language-coffeescript">this</code> binded to them inside the class:
+    </p>
+    <pre><code class="language-coffeescript">
+      class NameForm extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {value: ''};
+
+          this.handleChange = this.handleChange.bind(this);
+          this.handleSubmit = this.handleSubmit.bind(this);
+        }
+    </code></pre>
+    <p>
+      In Coffeescript the "fat arrow" <code class="language-coffeescript">=></code> automatically binds the context in which the function is defined (eg. the class) to the function's body.
+    </p>
+  
+    <h3 id="String_interpolation"><a href="#String_interpolation">String interpolation</a></h3>    
+    <p>
+      You'll have noticed that while the Javascript used double quotes for its strings, I've been using single quotes in the Coffeescript version. That is because in Coffeescript, double quotes are used for <a href="http://coffeescript.org/#interpolation">string interpolation</a> using the <code class="language-coffeescript">#{}</code> syntax. For example, if you wanted to place a name inside a welcome message, then the Coffeescript would be:
+    </p>
+    <pre><code class="language-coffeescript">
+      console.log "Hello #{name} and welcome to Caffeinated.tech!"
+    </code></pre>
+
+    <h3 id="Putting_it_all_together"><a href="#Putting_it_all_together">Putting it all together</a></h3>    
+    <p>
+      Finally,  we get a complete React Component in Coffeescript:
+    </p>
+    <pre><code class="language-coffeescript">
+      class NameForm extends React.Component
+        constructor(props) ->
+          super(props)
+          @state = 
+            value: ''
+
+        handleChange: (event) =>
+          @setState
+            value: event.target.value
+
+        handleSubmit: (event) =>
+          alert "A name was submmited: #{@state.value}"
+          event.preventDefault()
+
+        render: ->
+          form
+            onSubmit: @handleSubmit
+            label null,
+              'name'
+              input
+                type: 'text'
+                value: @state.value
+                onChange: @handleChange
+            input
+              type: 'submit'
+              'Submit'
+    </code></pre>
+
+    <h3 id="Summary"><a href="#Summary">Summary</a></h3>    
+
+    <p> 
+      Coffeescript is a language true to its roots - exposing the good parts of Javascript. This approach still works with newer libraries with highly specialized libraries like ReactJS. If you want to delve into the ReactJS world, but don't fancy adding another pre-compile step to your coffeescript project, then don't hold back.
+    </p>
+    <p>
+      While resources for the specific combination of Coffeescript and ReactJS are few and far between, there are some I can recommend. <a href="https://blog.arkency.com/2015/05/you-can-use-coffeescript-classes-with-react-dot-js-pros-and-cons/" target="_blank">Arkency</a> run a great development blog with many posts on using ReactJS with a Ruby on Rails / Coffeescript project.
+    </p>
+    <br/>
+    <p>
+      If you have feedback, or would like some more posts on the topic of ReactJS and Coffeescript then <a href="/contact.html">let me know</a>.
+    </p>
+  </content>
+ 
+  <ct-footer></ct-footer>
+  <script type="text/javascript" src="/public/scripts/prism.js"></script>
+</body>
+</html>
